@@ -1,0 +1,1 @@
+console.log(Math.random() < .5 ? "What up fuckers!" : "Hell yeah, fuckers!")
