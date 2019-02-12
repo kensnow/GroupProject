@@ -25,6 +25,10 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userType:{
+        type:String,
+        enum:["Customer","Guide"]
+    },
     bookings: [{
         type:objectId,
         ref:"Bookings"
