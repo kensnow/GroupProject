@@ -9,10 +9,9 @@ import main from "./assets/sass/main.sass"
 const App = () => {
     return (
         <div>
-            <Header />
-            <NavBar />
+         
             <MainView />
-            <Footer />
+     
             
         </div>
     )
