@@ -25,6 +25,10 @@ const guideSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userType:{
+        type:String,
+        enum:["Customer","Guide"]
+    },
     profileImg: {
         type: Buffer,
         contentType: String
