@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const objectId = mongoose.Schema.Types.ObjectId
+
 
 const customerSchema = new mongoose.Schema({
     email: {

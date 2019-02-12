@@ -32,7 +32,7 @@ const guideSchema = new mongoose.Schema({
     aboutMe: String,
     bookings: [{
         type:objectId,
-        ref:"Bookings"
+        ref:'Bookings'
     }],
     abilityRange: [],
     resorts: [{
