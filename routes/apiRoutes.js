@@ -1,8 +1,9 @@
 const express = require('express')
 const apiRouter = express.Router()
 
-app.use('/customer', require('./routes/customerRoutes'));
-app.use('/guides', require('./routes/guideRoutes'));
-app.use('/resorts', require('./routes/resortRoutes'));
+apiRouter.use('/customers', require('./customerRoutes'));
+apiRouter.use('/guides', require('./guideRoutes'));
+apiRouter.use('/resorts', require('./resortRoutes'));
+apiRouter.use('/bookings', require('./bookingRoutes'));
 
 module.exports = apiRouter

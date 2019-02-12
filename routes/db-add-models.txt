@@ -1,0 +1,32 @@
+
+//customer
+
+{
+	"email":"bobMarlet@aol.com",
+	"password":"12345",
+	"abilityLevel":1,
+	"phoneNumber":"5555555555",
+	"bookings":[],
+	"favorites":{
+		"resort":[],
+		"guide":[]
+	}
+	
+}
+
+//guide
+
+{
+	"email":"Gmoney@aol.com",
+	"username":"gmoney",
+	"password":"12345",
+	"abilityRange":[0,1,2,3],
+	"phoneNumber":"5555555555",
+	"aboutMe":"I like ski",
+	"resorts":[],
+	"bookings":[],
+	"reviews":[]
+	
+}
+
+//
