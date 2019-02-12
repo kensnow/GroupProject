@@ -1,9 +1,12 @@
 import React from 'react'
+import NavBar from './NavBar';
+import Header from './Header';
 
 const MainView = () => {
     return (
         <div>
-            <p>test</p>
+            {/* <NavBar/> */}
+            <Header/>
         </div>
     )
 }
