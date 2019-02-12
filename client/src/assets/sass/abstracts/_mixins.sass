@@ -4,3 +4,9 @@
         display: table
         clear: both
     //because the above is a psuedo elemnt we must declare the content property. clear: both clears both the left and the right float.
+
+@mixin clearingFunction 
+    &:after 
+        content: ""
+        display: block
+        clear: both
