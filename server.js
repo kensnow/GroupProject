@@ -1,11 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
-
+const morgan = require('morgan')
 //insert expressJWT when completing auth
 
 const app = express()
-
+app.use(morgan('dev'))
 app.use(express.json())
 
 mongoose.set('useCreateIndex', true);
@@ -18,15 +18,8 @@ mongoose.connect(process.env.MONGODB_URI,
 );
 
 //app.use...
-app.use('/api', require('./routes/api'))
+app.use('/api', require('./routes/apiRoutes'))
 
-//api/customers
-//api/guides
-//api/resorts
-
-//structure as /api/guide/:id/booking etc.
-
-//auth/guide or auth/customer
 
 //error handler
 app.use((err, req, res, next) => {
