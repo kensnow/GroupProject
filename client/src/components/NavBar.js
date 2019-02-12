@@ -14,7 +14,7 @@ const NavBar = () => {
                     <li> <a href="" /> Resorts</li>
                 </ul>
                 <input type="text" name="FirstName" value="Login" />
-                <input type="text" name="FirstName" value="Password" />
+                <input type="password" name="FirstName" value="Password" />
             </div>
         </nav>
 

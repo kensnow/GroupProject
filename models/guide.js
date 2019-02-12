@@ -17,10 +17,7 @@ const guideSchema = new mongoose.Schema({
         unique: true,
         trim: true,
     },
-    phoneNumber: {
-        type: String,
-        required: true
-    },
+    phoneNumber: String,
     password: {
         type: String,
         required: true
