@@ -21,10 +21,7 @@ const customerSchema = new mongoose.Schema({
         default: 0,
         enum: [0, 1, 2, 3]
     },
-    phoneNumber: {
-        type: String,
-        required: true
-    },
+    phoneNumber: String,
     userType:{
         type:String,
         enum:["Customer","Guide"]
