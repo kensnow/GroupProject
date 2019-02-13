@@ -10,9 +10,8 @@ import LandingPage from './components/LandingPage';
 const App = () => {
     return (
         <div>
-         
-            <LandingPage />
-     
+            <Header />
+            <MainView />
             
         </div>
     )
