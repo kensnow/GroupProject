@@ -8,7 +8,7 @@
     clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
     .text-box
         position: absolute
-        background-color: rgba($color-primary-dark, .2)
+        background-color: rgba($color-primary-dark, .2) 
         top: 50%
         left: 50%
         border-radius: 1rem
@@ -17,16 +17,19 @@
     .heading-primary
         color: $color-white
         text-transform: uppercase
+        font-size: 5rem
         margin: 2rem
         backface-visibility: hidden //for animations later
+        @include tabletSize
+            font-size: 2.5rem
+        @include phoneSize
+            font-size: 2.5rem
     .heading-primary-main
         display: block
-        font-size: 5rem
         font-weight: 400
         letter-spacing: 2rem
     .heading-primary-sub
         display: block
-        font-size: 5rem
         font-weight: 400
         letter-spacing: 1.9rem
 
