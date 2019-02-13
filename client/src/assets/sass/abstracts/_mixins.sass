@@ -10,3 +10,11 @@
         content: ""
         display: block
         clear: both
+
+@mixin tabletSize
+    @media (min-width: $tablet-width) and (max-width:$desktop-width - 1px)
+        @content
+
+@mixin phoneSize
+    @media (min-width: $phone-width) and (max-width:$tablet-width - 1px)
+        @content
