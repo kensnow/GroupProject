@@ -19,15 +19,16 @@ mongoose.connect(process.env.MONGODB_URI,
 
 //app.use...
 app.use('/api', require('./routes/apiRoutes'))
+app.use('/auth', require('./routes/authRoutes'))
 
 
 //error handler
 app.use((err, req, res, next) => {
-    console.log(err.name)
-    if(err.name === "UnauthorizedError"){
+    console.error(err);
+    if (err.name === "UnauthorizedError") {
         res.status(err.status)
     }
-    return res.send(err.message)
+    return res.send({ message: err.message });
 })
 
 app.listen(process.env.PORT, () => (

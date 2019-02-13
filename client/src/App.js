@@ -5,12 +5,13 @@ import MainView from "./components/MainView"
 import Footer from "./components/Footer"
 
 import main from "./assets/sass/main.sass"
+import LandingPage from './components/LandingPage';
 
 const App = () => {
     return (
         <div>
          
-            <MainView />
+            <LandingPage />
      
             
         </div>
