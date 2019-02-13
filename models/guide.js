@@ -11,23 +11,20 @@ const guideSchema = new mongoose.Schema({
         lowercase: true,
         required: true
     },
-    username: {
+    nickName: {
         type: String,
-        required: true,
-        unique: true,
         trim: true,
     },
-    phoneNumber: {
-        type: String,
-        required: true
-    },
+    firstName: String,
+    lastName: String,
+    phoneNumber: String,
     password: {
         type: String,
         required: true
     },
-    userType:{
-        type:String,
-        enum:["Customer","Guide"]
+    userType: {
+        type: String,
+        enum: ["Customer", "Guide"]
     },
     profileImg: {
         type: Buffer,
@@ -35,8 +32,8 @@ const guideSchema = new mongoose.Schema({
     },
     aboutMe: String,
     bookings: [{
-        type:objectId,
-        ref:'Bookings'
+        type: objectId,
+        ref: 'Bookings'
     }],
     abilityRange: [],
     resorts: [{
