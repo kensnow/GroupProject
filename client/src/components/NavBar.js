@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link, Route} from "react-router-dom"
 
 const NavBar = () => {
     return (
@@ -9,12 +10,13 @@ const NavBar = () => {
                     <img alt="Logo" className='logo' src={require('../assets/img/logo_transparent.png')} />
                 </div>
                 <ul>
-                    <li> <a href="" /> Booking </li>
-                    <li> <a href="" /> Guides</li>
-                    <li> <a href="" /> Resorts</li>
+                    <li> <Link to="/booking"> Booking </Link> </li>
+                    <li> <Link to="/guides"> Guides</Link> </li>
+                    <li> <Link to="/resorts"> Resorts</Link> </li>
                 </ul>
-                <input type="text" name="FirstName" value="Login" />
+                <input type="text" name="FirstName" value="Email" />
                 <input type="password" name="FirstName" value="Password" />
+                <button>Submit</button>
             </div>
         </nav>
 
