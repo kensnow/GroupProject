@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const objectId = mongoose.Schema.Types.ObjectId
 
 const bookingSchema = new mongoose.Schema({
     
@@ -17,8 +18,6 @@ const bookingSchema = new mongoose.Schema({
         ref:'Customer'
     },
     groupSize: Number
-
-
 
 })
 

@@ -25,6 +25,10 @@ const guideSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userType:{
+        type:String,
+        enum:["Customer","Guide"]
+    },
     profileImg: {
         type: Buffer,
         contentType: String
@@ -32,7 +36,7 @@ const guideSchema = new mongoose.Schema({
     aboutMe: String,
     bookings: [{
         type:objectId,
-        ref:"Bookings"
+        ref:'Bookings'
     }],
     abilityRange: [],
     resorts: [{

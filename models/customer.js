@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const objectId = mongoose.Schema.Types.ObjectId
+
 
 const customerSchema = new mongoose.Schema({
     email: {
@@ -22,6 +24,10 @@ const customerSchema = new mongoose.Schema({
     phoneNumber: {
         type: String,
         required: true
+    },
+    userType:{
+        type:String,
+        enum:["Customer","Guide"]
     },
     bookings: [{
         type:objectId,
