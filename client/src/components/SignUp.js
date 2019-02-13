@@ -8,6 +8,7 @@ const SignUp = () => {
             <input type="text" placeholder="E-Mail" />
             <input type="password" placeholder="Password" />
             <input type="password" placeholder="E-Mail" />
+            <button>Submit</button>
 
             
         </div>
