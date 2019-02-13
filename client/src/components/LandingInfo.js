@@ -9,7 +9,7 @@ function LandingInfo() {
                 <span className="heading-primary-sub">Ski like a local.</span>
             </h1>
             <a href="#" className="btn btn-white btn-animated"> Book Now </a>
-        </div>
+        </div> 
     </header>
 
     )
