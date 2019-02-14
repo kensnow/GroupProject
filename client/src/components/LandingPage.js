@@ -4,7 +4,7 @@ import AboutPage from './AboutPage'
 function LandingPage() {
     return (
         <div>
-            <header className="header">
+            <header className="page-img">
                 <div className="text-box"> {/* add text */}
                     <h1 className="heading-primary">
                         <span className="heading-primary-main">Ski with a local.</span> <br />

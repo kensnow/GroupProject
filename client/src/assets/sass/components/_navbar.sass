@@ -2,7 +2,7 @@
 #main-nav
     background: rgba($color-primary-dark, .2)
     width: 100%
-    height: 5rem
+    height: 0rem
     margin: 0 auto
     transform: translate(0,4rem)
     @include tabletSize
@@ -17,14 +17,14 @@
             top: -2.4rem
             left: 0rem
         @include phoneSize
-            top: -2.4rem
+            top: 0rem
             left: 0rem
         .logo
             height: 15.5rem
             @include tabletSize
                 height: 10rem
             @include phoneSize
-                height: 10rem
+                height: 3rem
             
     ul
         width: 80%
@@ -48,25 +48,39 @@
             font-size: 1.5rem
             width: (60%/3)
         @include phoneSize
-            font-size: 1.5rem
+            float: left
+            transform: translate(0rem, 1rem)
+            margin-left: 1rem
+            font-size: 1rem
             width: (60%/3)
         
     .login-box  
-        width: 15rem
+        width: 20rem
         float: right
-        transform: translate(-12rem, -6.1rem)
+        transform: translate(-15rem, -6.3rem)
         input    
             margin-right: 1rem
-            border-radius: .5rem
+            width: 15rem
+            height: .7rem
             @include tabletSize
-                transform: translateY(-4rem)
+                transform: translateX(4rem)
             @include phoneSize
-                transform: translateY(-4rem)
+                transform: translate(6rem, 3.5rem)
+                width: 3rem
+                float: right
         .btn
             float: right
-            transform: translate(10rem, -5rem)
-            padding: 1rem 1rem
+            transform: translate(8rem, -5rem)
+            padding: 1rem 1.7rem
             font-size: 1.2rem
+            @include tabletSize
+                transform: translate(8rem, -5rem)
+                font-size: 1rem
+                padding: 1.25rem 1.5rem
+            @include phoneSize
+                transform: translate(20rem, 0rem)
+                font-size: .3rem
+                padding: .75rem 1rem
         
 
         
