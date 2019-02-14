@@ -118,8 +118,8 @@ function ResortsPage() {
                                 </h4>
                                 <div className="card__details">
                                     <ul>
-                                        <li>Intermediate to Beyond Expert</li>
-                                        <li>2,500 skiable acres</li>
+                                        <li>Beginner to Expert</li>
+                                        <li>3,000 skiable acres</li>
                                         <li>$$</li>
 
                                     </ul>
@@ -130,12 +130,8 @@ function ResortsPage() {
                                 <div className="card-cta">
                                     <div className="card__resort-info">
                                         <p className="card__resort-info">
-
-                                            Snowbird ski resort is nestled in Little Cottonwood Canyon in the heart of the Wasatch-Cache National Forrest, approximately 29 miles from Salt Lake City International Airport.
-    
-    
+                                        Often overlooked because of the famous resorts in Park City and the Cottonwood Canyons, Snowbasin is a gem of a resort, located 45 minutes from the Salt Lake International Airport and eight miles from Ogden Valley. 
                                         </p>
-
                                     </div>
                                     <a href="#" className="btn btn-white">Book now!</a>
                                 </div>
