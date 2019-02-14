@@ -44,4 +44,30 @@ const customerSchema = new mongoose.Schema({
     }
 })
 
+customerSchema.pre("save", function (next) {
+    const user = this
+    if (!user.isModified("password")) return next()
+bcrypt.hash(user.password, 10, (err, hash) => {
+    if (err) return next(err)
+    user.password = hash
+    next()
+})
+})
+
+customerSchema.methods.withoutSensitiveInfo = function () {
+    const user = this.toObject()
+    delete user.password
+    delete user.email
+    delete user.lname
+    return user
+}
+
+customerSchema.methods.checkPassword = function (passwordAttempt, callback) {
+    bcrypt.compare(passwordAttempt, this.password, (err, isMatch) => {
+        if (err) return callback(err)
+        callback(null, isMatch)
+    })
+
+}
+
 module.exports = mongoose.model('Customer', customerSchema)
