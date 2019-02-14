@@ -9,7 +9,8 @@ const AboutPage = () => {
             <div className="u-center-text u-margin-bottom-big">
                 <h2 className="heading-secondary">
                     <div className="box">
-                        About SkiLocal
+                        <p>About SkiLocal</p>
+                        <p className="about-info">Skiers living in the region relative to world class Ski Resorts know thier "Home" resorts better than any other. Now, you have the opportunity to ski with a Local and experience pristine ski conditions like a Local.</p>
                     </div>
 
 
