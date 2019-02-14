@@ -1,4 +1,5 @@
 import React from 'react'
+import LoginForm from "./LoginForm"
 import { Link, Route } from "react-router-dom"
 
 const NavBar = () => {
@@ -17,12 +18,7 @@ const NavBar = () => {
                 <li> <Link to="/guides"> Guides</Link> </li>
                 <li> <Link to="/resorts"> Resorts</Link> </li>
             </ul>
-            <div className="login-box">
-                <input type="text" name="FirstName" value="Email" />
-                <input type="password" name="FirstName" value="Password" />
-
-                <a href="#" className="btn-white btn btn-animated"> Submit </a>
-            </div>
+            <LoginForm/>
 
 
 
