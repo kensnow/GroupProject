@@ -4,7 +4,7 @@ import AboutPage from './AboutPage'
 function LandingPage() {
     return (
         <div>
-            <header className="header">
+            <div className="page-img">
                 <div className="text-box"> {/* add text */}
                     <h1 className="heading-primary">
                         <span className="heading-primary-main">Ski with a local.</span> <br />
@@ -12,7 +12,7 @@ function LandingPage() {
                     </h1>
                     <a href="#" className="btn btn-white btn-animated"> Book Now </a>
                 </div>
-            </header>
+            </div>
             <AboutPage />
         </div>
     )
