@@ -1,0 +1,142 @@
+.page-img-guide
+    height: 175vh
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.801), rgba($color-primary-dark, 0.801)),url(../img/guidePage.jpeg)
+    background-size: cover
+    background-position: bottom
+    -webikit-clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
+    clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
+    .text-box-guide
+        position: absolute
+        width: 90vw
+        height: 40vh
+        background-color: rgba($color-primary-dark, .2) 
+        top: 50%
+        left: 50%
+        border-radius: 1rem
+        transform: translate(-50%, -50%)
+        text-align: center
+    .heading-primary-guide
+        color: $color-white
+        text-transform: uppercase
+        font-size: 5rem
+        margin: 2rem
+        backface-visibility: hidden //for animations later
+        @include tabletSize
+            font-size: 2.5rem
+        @include phoneSize
+            font-size: 2.5rem
+    .heading-primary-main-guide
+        display: block
+        font-weight: 400
+        letter-spacing: 2rem
+    .heading-primary-sub-guide
+        display: block
+        font-weight: 400
+        letter-spacing: 1.9rem
+
+
+
+//heading/text for the about us 
+
+.heading-secondary-guide
+    font-size: 3.5rem
+    text-transform: uppercase
+    font-weight: 500
+    display: inline-block
+    color: white
+    letter-spacing: .2rem
+//cards styling
+
+.cards-wrapper
+    transform: translateY(75rem)
+.card
+    perspective: 150rem
+    -moz-perspective: 150rem 
+    //dont think i need line 2-3
+    position: relative
+    height: 50rem
+
+    &__side
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        backface-visibility: hidden
+        height: 50rem
+        transition: all .8s
+        border-radius: 10px
+        overflow: hidden
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15)
+
+        &--front
+            background-color: $color-white
+
+        &--back 
+            transform: rotateY(-180deg)
+            &--1 
+                background-image: linear-gradient(to left bottom, rgba($color-secondary-light, 0.801), rgba($color-secondary-dark, 0.801))
+                .card-cta
+                    text-align: center
+                    margin-top: 5rem
+            
+    &:hover &__side--front
+        transform: rotateY(180deg)
+    &:hover &__side--back
+        transform: rotateY(0deg)
+
+    //front card styling
+    &__picture
+        background-size: cover
+        height: 23rem
+        background-blend-mode: screen //SUPER COOL!!!
+        -webkit-clip-path: polygon(0% 0%, 125% 0%, 80% 100%, 0% 100%)
+        clip-path: polygon(0% 0%, 125% 0%, 80% 100%, 0% 100%)
+        
+        &--1
+            background-image: linear-gradient(to left bottom, 
+            rgba($color-secondary-light, 0.801), 
+            rgba($color-secondary-dark, 0.801)),url(../img/skier1.jpeg)
+
+
+        &--2
+            background-image: linear-gradient(to left bottom, 
+            rgba($color-secondary-light, 0.801), 
+            rgba($color-secondary-dark, 0.801)),url(../img/skier2.jpeg)
+
+        &--3
+            background-image: linear-gradient(to left bottom, 
+            rgba($color-secondary-light, 0.801),
+            rgba($color-secondary-dark, 0.801)),url(../img/skier3.jpeg)
+
+    &__heading
+        font-size: 2.8rem
+        font-weight: 300
+        text-transform: uppercase
+        text-align: right
+        color: $color-white
+        position: absolute
+        top: 8rem
+        right: 2rem
+        width: 55%
+    &__heading--span
+        padding: .5rem 1rem
+        -webkit-box-decoration-break: clone
+        box-decoration-break: clone //how it renders when the line is broken down
+
+        &--1
+            background-image: linear-gradient(to right bottom, 
+            rgba($color-secondary-light, 0.801), 
+            rgba($color-secondary-dark, 0.801))
+    
+    &__details
+
+        ul
+            list-style: none
+            width: 75%
+            li
+                text-align: center
+                font-size: 1.5rem
+                padding: 1rem
+
+                &:not(:last-child)
+                    border-bottom: 1px solid $color-grey-light-2
