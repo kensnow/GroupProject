@@ -71,14 +71,7 @@ const SignUp = (props) => {
                         )
                     }
                 }
-
-
-
-
             </FormHandler>
-
-            
-
 
         </div>
     )
