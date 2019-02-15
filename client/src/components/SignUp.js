@@ -1,9 +1,12 @@
 import React from 'react'
-import FormHandler from "../FormHandler"
+import FormHandler from "../FormHandler";
+
+
 
 const SignUp = (props) => {
 
     const textInputs = [
+
         {
             name: "firstName",
             type: "text",
@@ -43,6 +46,8 @@ const SignUp = (props) => {
 
 
 
+
+
     return (
         <div className="signupWrapper">
 
@@ -57,20 +62,17 @@ const SignUp = (props) => {
             <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={inputs => alert(JSON.stringify(inputs))}>
 
                 {
-                    ({ inputs, handleChange, handleSubmit, handleUserType }) => {
+                    ({ inputs, handleChange, handleSubmit}) => {
+
                         const inputBoxes = textInputs.map((x, i) => {
-                         return x.name !== "userType" ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
+                            return x.name !== "userType" ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
                         }
                         )
                         return (
                             <div className="formWrapper">
                                 <div className="userTypeWrapper">
-                                    <div onClick={handleUserType} id="guide" style={{
-                                        border: inputs.userType === "guide" ? "1px solid gold" : null
-                                    }} className="guideCard">Guide</div>
-                                    <div onClick={handleUserType} id="customer" style={{
-                                        border: inputs.userType !== "guide" ? "1px solid gold" : null
-                                    }} className="customerCard">Customer</div>
+                                    <button className="guide-button" name="userType" onClick={handleChange} value="guide">I need a guide</button>
+                                    <button className="customer-button" name="userType" onClick={handleChange} value="customer" id="customer">I am a guide</button>
 
                                 </div>
                                 <form onSubmit={handleSubmit}>
@@ -79,6 +81,8 @@ const SignUp = (props) => {
                                 </form>
                             </div>
                         )
+
+
                     }
                 }
             </FormHandler>
