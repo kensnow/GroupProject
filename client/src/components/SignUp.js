@@ -6,13 +6,13 @@ const SignUp = (props) => {
 
     const textInputs = [
         {
-            name: "fName",
+            name: "firstName",
             type: "text",
             placeholder: "First Name",
             className: "textBox",
         },
         {
-            name: "lName",
+            name: "lastName",
             type: "text",
             placeholder: "Last Name",
             className: "textBox"

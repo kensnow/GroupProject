@@ -1,13 +1,15 @@
 import React from 'react'
+import FormHandler from "../FormHandler"
+import {withDataHandler} from "../DataHandler"
 
-const LoginForm = () => {
+const LoginForm = (props) => {
     return (
-        <div className="login-box">
+        <form className="login-box">
             <input type="text" name="FirstName" />
             <input type="password" name="FirstName" />
 
-            <a href="#" className="btn-white btn btn-animated"> Submit </a>
-        </div>
+            <button className="btn-white btn btn-animated"> Submit </button>
+        </form>
     )
 }
 
