@@ -5,7 +5,7 @@ function GuidesPage() {
 
         <div>
             <div className="page-img-guide">
-                <div className="text-box-guide"> {/* add guide info */}
+                <div className="text-box-guide"> 
                     <h1 className="heading-primary-guide">
                         <span className="heading-primary-main-guide">Ski like a local.</span> <br />
                         <span className="heading-primary-sub-guide">with our guides</span>
