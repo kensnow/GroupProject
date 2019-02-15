@@ -1,5 +1,6 @@
 import React from 'react'
 import FormHandler from "../FormHandler"
+import {withDataHandler} from "../DataHandler"
 
 const SignUp = (props) => {
 
@@ -54,7 +55,7 @@ const SignUp = (props) => {
             <br></br>
             <br></br>
             <br></br>
-            <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={inputs => alert(JSON.stringify(inputs))}>
+            <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={(inputs) => props.signUp(inputs)}>
 
                 {
                     ({ inputs, handleChange, handleSubmit, handleUserType }) => {
@@ -87,4 +88,4 @@ const SignUp = (props) => {
     )
 }
 
-export default SignUp
+export default withDataHandler(SignUp)
