@@ -1,14 +1,31 @@
 import React from 'react'
+import FormHandler from "../FormHandler"
+import {withDataHandler} from "../DataHandler"
+import {withRouter} from 'react-router-dom'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+    const loginInputs = {
+        email:"",
+        password:""
+
+    }
     return (
-        <div className="login-box">
-            <input type="text" name="FirstName" />
-            <input type="password" name="FirstName" />
+        <FormHandler inputs={loginInputs} submit={(inputs) => props.logIn(inputs).then(() => props.history.push('/myprofile'))}>
+            {
+                ({inputs, handleChange, handleSubmit}) => {
 
-            <a href="#" className="btn-white btn btn-animated"> Submit </a>
-        </div>
+                    return(
+                        <form onSubmit={handleSubmit} className="login-box">
+                            <input onChange={handleChange} type="email" name="email" />
+                            <input onChange={handleChange} type="password" name="password" />
+
+                            <button className="btn-white btn btn-animated"> Submit </button>
+                        </form>
+                    )
+                }
+            }
+        </FormHandler>
     )
 }
 
-export default LoginForm
+export default withRouter(withDataHandler(LoginForm))
