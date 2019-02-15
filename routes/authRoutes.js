@@ -3,12 +3,13 @@
 const express = require("express")
 const authRouter = express.Router()
 const jwt = require("jsonwebtoken")
-const Costumer = require("../models/customer")
+const Customer = require("../models/customer")
 const Guide = require("../models/guide")
 
 authRouter.post("/signup", (req, res, next) => {
     //Check to see if email is already in the collection
-    Costumer.findOne({ email: `${req.body.email}` }, (err, existingUser) => {
+    console.log(req)
+    Customer.findOne({ email: `${req.body.email}` }, (err, existingUser) => {
         if (err) {
             res.status(500)
             return next(err)
@@ -43,7 +44,7 @@ authRouter.post("/signup", (req, res, next) => {
 })
 
 authRouter.post("/login", (req, res, next) => {
-    Costumer.findOne({ email: `${req.body.email}` }, (err, user) => {
+    Customer.findOne({ email: `${req.body.email}` }, (err, user) => {
         const theUser = user
         if (err) return res.status(500).send(err)
         if (!user) {
