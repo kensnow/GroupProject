@@ -1,7 +1,7 @@
 //page main background and info boxes
 .page-img-guide
     height: 175vh
-    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.801), rgba($color-primary-dark, 0.801)),url(../img/guidePage.jpeg)
+    background-image: linear-gradient(to right bottom, rgba($color-primary, 0.801), rgba($color-primary-dark, 0.801)),url(../img/guidePage.jpeg)
     background-size: cover
     background-position: bottom
     -webikit-clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
@@ -50,12 +50,15 @@
 
 .cards-wrapper
     transform: translateY(75rem)
+    @include phoneSize
+        height: 10rem
 .card
     perspective: 150rem
     -moz-perspective: 150rem 
     //dont think i need line 2-3
     position: relative
     height: 50rem
+  
 
     &__side
         position: absolute

@@ -10,7 +10,7 @@ function LandingPage() {
                         <span className="heading-primary-main">Ski with a local.</span> <br />
                         <span className="heading-primary-sub">Ski like a local.</span>
                     </h1>
-                    <a href="#" className="btn btn-white btn-animated"> Book Now </a>
+                    <a href="/auth/signup" className="btn btn-white btn-animated"> Sign Up </a>
                 </div>
             </div>
             <AboutPage />

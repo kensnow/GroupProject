@@ -5,10 +5,7 @@
     height: 0rem
     margin: 0 auto
     transform: translate(0,4rem)
-    // @include tabletSize
-    //     height: 4rem
-    // @include phoneSize
-    //     height: 4rem
+  
     .logo-box
         position: absolute
         top: -5rem
@@ -40,19 +37,19 @@
         margin-left: 5rem
         margin-top: .75rem
         list-style: none
-        width: (65%/3)
+        width: (65%/4)
         a
             text-decoration: none
             color: $color-white
         @include tabletSize
             font-size: 1.5rem
-            width: (60%/3)
+            width: (60%/4)
         @include phoneSize
             float: left
             transform: translate(0rem, 0rem)
             margin-left: 1rem
             font-size: 1rem
-            width: (60%/3)
+            width: (60%/4)
         
     .login-box  
         width: 20rem
@@ -70,7 +67,7 @@
             @include tabletSize
                 transform: translateX(5rem)
             @include phoneSize
-                transform: translate(0rem, 0rem)
+                transform: translate(1rem, 0rem)
                 width: 3rem
                 float: left
                 font-size: .5rem
