@@ -9,11 +9,12 @@ export default class FormHandler extends Component {
     }
     handleChange = (e) => {
         const { name, value } = e.target
+        console.log(name, value)
         this.setState(ps => (
             {
                 inputs: {
-                ...ps.inputs,
-                [name]: value
+                    ...ps.inputs,
+                    [name]: value
                 }
             }
         ))
@@ -27,7 +28,8 @@ export default class FormHandler extends Component {
         const props = {
             ...this.state,
             handleChange: this.handleChange,
-            handleSubmit: this.handleSubmit
+            handleSubmit: this.handleSubmit,
+            handleUserType: this.handleUserType
         }
         return (
             this.props.children(props)
