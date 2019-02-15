@@ -16,6 +16,8 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    firstName:String,
+    lastName:String,
     abilityLevel: {
         type: Number,
         default: 0,

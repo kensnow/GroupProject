@@ -5,6 +5,7 @@ import ResortsPage from './ResortsPage'
 import GuidesPage from './GuidesPage'
 import BookingPage from './BookingPage'
 import SignUp from './SignUp'
+import EditProfile from './EditProfile';
 
 const MainView = () => {
     return (
@@ -14,6 +15,7 @@ const MainView = () => {
             <Route path="/guides" component={GuidesPage} />
             <Route path="/booking" component={BookingPage} />
             <Route path="/auth/signup" component={SignUp} />
+            <Route path="/profile" component={EditProfile} />
         </div>
     )
 }
