@@ -3,14 +3,22 @@ import FormHandler from "../FormHandler"
 import {withDataHandler} from "../DataHandler"
 
 const LoginForm = (props) => {
-    return (
-        <form className="login-box">
-            <input type="text" name="FirstName" />
-            <input type="password" name="FirstName" />
+    const inputs = {
+        email:"",
+        password:""
 
-            <button className="btn-white btn btn-animated"> Submit </button>
-        </form>
+    }
+    return (
+        <FormHandler>
+            <form className="login-box">
+                <input type="email" name="email" />
+                <input type="password" name="password" />
+
+                <button className="btn-white btn btn-animated"> Submit </button>
+            </form>
+        </FormHandler>
+
     )
 }
 
-export default LoginForm
+export default withDataHandler(LoginForm)
