@@ -6,6 +6,8 @@ import GuidesPage from './GuidesPage'
 import BookingPage from './BookingPage'
 import SignUp from './SignUp'
 import EditProfile from './EditProfile';
+import ProfilePage from './ProfilePage';
+import ProtectedRoute from "./ProtectedRoute"
 
 const MainView = () => {
     return (
@@ -16,6 +18,7 @@ const MainView = () => {
             <Route path="/booking" component={BookingPage} />
             <Route path="/auth/signup" component={SignUp} />
             <Route path="/profile" component={EditProfile} />
+            <Route path="/myprofile" component={ProfilePage} />
         </div>
     )
 }
