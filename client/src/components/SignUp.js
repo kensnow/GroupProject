@@ -5,13 +5,13 @@ const SignUp = (props) => {
 
     const textInputs = [
         {
-            name: "fName",
+            name: "firstName",
             type: "text",
             placeholder: "First Name",
             className: "textBox",
         },
         {
-            name: "lName",
+            name: "lastName",
             type: "text",
             placeholder: "Last Name",
             className: "textBox"
@@ -33,6 +33,11 @@ const SignUp = (props) => {
             type: "password",
             placeholder: "Confirm Password",
             className: "textBox"
+        },
+        {
+            ///This will be a toggle value in state
+            name: "userType",
+            value: "guide"
         }
     ]
 
@@ -40,15 +45,7 @@ const SignUp = (props) => {
 
     return (
         <div className="signupWrapper">
-            {/* <div className="userTypeWrapper">
-                <div style={{
-                    border: this.state.userType === "guide" ? "4px solid gold" : null
-                }} className="guideCard"></div>
-                <div style={{
-                    border: this.state.userType === "guide" ? "1px solid gold" : null
-                }} className="customerCard"></div>
 
-            </div> */}
             <br></br>
             <br></br>
             <br></br>
@@ -60,14 +57,27 @@ const SignUp = (props) => {
             <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={inputs => alert(JSON.stringify(inputs))}>
 
                 {
-                    ({ inputs, handleChange, handleSubmit }) => {
-                        const inputBoxes = textInputs.map((x, i) => <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} />
+                    ({ inputs, handleChange, handleSubmit, handleUserType }) => {
+                        const inputBoxes = textInputs.map((x, i) => {
+                         return x.name !== "userType" ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
+                        }
                         )
                         return (
-                            <form onSubmit={handleSubmit}>
-                                {inputBoxes}
-                                <button>Submit</button>
-                            </form>
+                            <div className="formWrapper">
+                                <div className="userTypeWrapper">
+                                    <div onClick={handleUserType} id="guide" style={{
+                                        border: inputs.userType === "guide" ? "1px solid gold" : null
+                                    }} className="guideCard">Guide</div>
+                                    <div onClick={handleUserType} id="customer" style={{
+                                        border: inputs.userType !== "guide" ? "1px solid gold" : null
+                                    }} className="customerCard">Customer</div>
+
+                                </div>
+                                <form onSubmit={handleSubmit}>
+                                    {inputBoxes}
+                                    <button>Submit</button>
+                                </form>
+                            </div>
                         )
                     }
                 }

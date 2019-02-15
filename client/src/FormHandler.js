@@ -23,11 +23,24 @@ export default class FormHandler extends Component {
         this.props.submit(this.state.inputs)
     }
 
+    handleUserType = (e) => {
+        
+        e.persist()
+        this.setState(ps => (
+            {
+            inputs: {
+                ...ps.inputs,
+                userType: e.target.id
+            }
+        }
+        ))
+    }
     render() {
         const props = {
             ...this.state,
             handleChange: this.handleChange,
-            handleSubmit: this.handleSubmit
+            handleSubmit: this.handleSubmit,
+            handleUserType: this.handleUserType
         }
         return (
             this.props.children(props)
