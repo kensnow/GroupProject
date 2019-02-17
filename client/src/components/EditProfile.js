@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import FormHandler from '../FormHandler'
 
+
 function EditProfile(props) {
 
     const editProfileInputs = {
