@@ -1,11 +1,14 @@
 import React from 'react'
+import {withDataHandler} from '../DataHandler'
 
-function BookingPage() {
+function BookingPage(props) {
+    const {user, guides, resorts, booking} = props
+    console.log(props)
     return (
         <div>
-            Booking Page
+            Guide Heyooooooooooooooooo
         </div>
     )
 }
 
-export default BookingPage
+export default withDataHandler(BookingPage)
