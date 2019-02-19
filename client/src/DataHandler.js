@@ -111,12 +111,33 @@ export default class DataHandler extends Component {
         this.getResorts()
     }
 
+    logIn = (props) => {
+        return axios.post('/auth/login', {
+            ...props
+        })
+        .then(res => {
+            console.log(res)
+                const {user, token} = res.data
+                this.setState({
+                    user: {token,...user}
+                })
+                console.log(this.state)
+                return res
+        })
+        .catch(err => {
+            this.setState({errMsg: err.response.data.message})
+            return err
+        })
+    }
+
     render() {
         const value = {
             signUp: this.signUp,
+
             logIn: this.logIn,
             bookService:this.bookService,
             ...this.state
+
         }
         return (
             <Provider value = {value}>
