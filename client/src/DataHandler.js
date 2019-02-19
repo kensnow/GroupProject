@@ -10,8 +10,11 @@ export default class DataHandler extends Component {
                 /////I changed these from fName and lName, WARNING: may cause bugs ;)
                 firstName: "",
                 lastName: "",
-                token: localStorage.getItem("token") || "",
-                
+                token: localStorage.getItem("token") || "", 
+            },
+            booking:{
+                guide:"",
+                resort:"",
             },
             errMsg:"",
             resorts:[],
@@ -25,10 +28,9 @@ export default class DataHandler extends Component {
             ...props
         })
             .then(res => {
-                const {user, token} = res.data
+                const {user} = res.data
                 this.setState({
-                    user: token,
-                    user: {...user},
+                    user: {...user}
                 })
                 return res
             })
@@ -44,13 +46,15 @@ export default class DataHandler extends Component {
             ...props
         })
         .then(res => {
-            console.log(res)
                 const {user, token} = res.data
                 this.setState({
-                    user: {token,...user}
+                    user: {
+                        ...user,
+                        token                    
+                    }
                 })
-                console.log(this.state)
-                return res
+                localStorage.setItem("token", token)
+                localStorage.setItem("user", JSON.stringify(user))
         })
         .catch(err => {
             this.setState({errMsg: err.response.data.message})
@@ -58,10 +62,45 @@ export default class DataHandler extends Component {
         })
     }
 
+    //do a get request to database guide collection & populate state guides array with guide objects
+    getGuides = () => {
+        return axios.get('/api/guides')
+            .then(res => {
+                const guideCollection = res.data
+                this.setState({
+                    guides:guideCollection
+                })
+                return res
+            })
+            .catch(err => {
+                this.setState({errMsg: err.response.data.message})
+                return err
+            })
+    }
+
+    //use book services for adding guide and/or resort to state
+    bookService = (serviceType, serviceId) => {
+        const bookingState = {...this.state.booking}
+        bookingState[serviceType] = serviceId
+        this.setState({booking:bookingState})
+    }
+
+    //use book now to send date object, guide id and resort id into booking collection.
+    //with response object, populate booking object in guide and user collections
+    bookNow = (props)=> {
+
+    }
+
+    componentDidMount(){
+        this.getGuides()
+    }
+
     render() {
         const value = {
             signUp: this.signUp,
-            logIn: this.logIn
+            logIn: this.logIn,
+            bookService:this.bookService,
+            ...this.state
         }
         return (
             <Provider value = {value}>

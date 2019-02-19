@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 
 export default class FormHandler extends Component {
     constructor(props) {
@@ -9,7 +9,6 @@ export default class FormHandler extends Component {
     }
     handleChange = (e) => {
         const { name, value } = e.target
-        console.log(name, value)
         this.setState(ps => (
             {
                 inputs: {

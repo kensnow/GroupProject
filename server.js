@@ -26,7 +26,7 @@ app.use('/auth', require('./routes/authRoutes'))
 
 //error handler
 app.use((err, req, res, next) => {
-    console.error(err);
+    console.error(err)
     if (err.name === "UnauthorizedError") {
         res.status(err.status)
     }
