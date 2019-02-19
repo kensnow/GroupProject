@@ -1,12 +1,26 @@
 import React from 'react'
 import {withDataHandler} from '../DataHandler'
+import { Link } from "react-router-dom"
+import lib from '../lib/index.js'
+
 
 function BookingPage(props) {
     const {user, guides, resorts, booking} = props
-    console.log(props)
+
+    //build guide & resort cardlett
+    const guide = lib.getObjectData(booking.guide, guides)
+
+    console.log(guide)
     return (
         <div>
-            Guide Heyooooooooooooooooo
+            <div>
+                <h1>Book Now!</h1>
+            </div>
+            <div>
+
+            </div>
+            <div></div>
+            <div></div>
         </div>
     )
 }
