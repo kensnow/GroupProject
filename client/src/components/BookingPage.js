@@ -8,9 +8,10 @@ function BookingPage(props) {
     const {user, guides, resorts, booking} = props
 
     //build guide & resort cardlett
-    const guide = lib.getObjectData(booking.guide, guides)
-
-    console.log(guide)
+    const guideDat = lib.getObjectData(booking.guide, guides)
+    const resortDat = lib.getObjectData(booking.resort, resorts)
+    console.log(guideDat)
+    console.log(resortDat)
     return (
         <div>
             <div>
