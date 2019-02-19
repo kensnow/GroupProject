@@ -7,7 +7,10 @@ export default class DataHandler extends Component {
         super(props)
         this.state = {
             user: {
-                token: localStorage.getItem("token") || "",  
+                /////I changed these from fName and lName, WARNING: may cause bugs ;)
+                firstName: "",
+                lastName: "",
+                token: localStorage.getItem("token") || "", 
             },
             booking:{
                 guide:"",
@@ -43,11 +46,15 @@ export default class DataHandler extends Component {
             ...props
         })
         .then(res => {
-                const {user} = res.data
+                const {user, token} = res.data
                 this.setState({
-                    user: {...user}
+                    user: {
+                        ...user,
+                        token                    
+                    }
                 })
-                return res
+                localStorage.setItem("token", token)
+                localStorage.setItem("user", JSON.stringify(user))
         })
         .catch(err => {
             this.setState({errMsg: err.response.data.message})
