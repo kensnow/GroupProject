@@ -40,6 +40,7 @@ const guideSchema = new mongoose.Schema({
         type: objectId,
         ref: 'Resort'
     }],
+    dailyRate:Number,
     reviews: [{
         customer: {
             type: objectId,

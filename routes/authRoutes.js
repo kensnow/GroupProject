@@ -8,7 +8,6 @@ const Guide = require("../models/guide")
 
 authRouter.post("/signup", (req, res, next) => {
     //Check to see if email is already in the collection
-    console.log(req)
     Customer.findOne({ email: `${req.body.email}` }, (err, existingUser) => {
         if (err) {
             res.status(500)
@@ -33,39 +32,34 @@ authRouter.post("/signup", (req, res, next) => {
                     })
                 }
             })
-
-
-            // return next(err)
         }
-
-        // If we make it this far, save the User to the collection and log them in by sending a token.
-
     })
 })
 
-authRouter.post("/login", (req, res, next) => {
-    Customer.findOne({ email: `${req.body.email}` }, (err, user) => {
-        const theUser = user
-        if (err) return res.status(500).send(err)
+
+authRouter.post("/login", async (req, res, next) => {
+    try {
+        let customer = await Customer.findOne({ email: `${req.body.email}` })
+        let guide = await Guide.findOne({ email: `${req.body.email}` })
+
+        let user = guide || customer;
         if (!user) {
-            return Guide.findOne({ email: `${req.body.email}` }, (err, user) => {
-                if (err) return res.status(500).send(err)
-                if (!user) return res.status(403).send({
-                    success: false, message: "The email/password combination provided is incorrect"
-                })
-                theUser = user
-            })
+            res.status(403);
+            throw Error('The email/password combination provided is incorrect')
         }
-        theUser.checkPassword(req.body.password, (err, match) => {
+        user.checkPassword(req.body.password, (err, match) => {
             if (err) return res.status(500).send(err)
             if (!match) return res.status(403).send({
                 success: false, message: "The email/password combination provided is incorrect"
             })
-
-            // Login and send token
             return res.status(200).send(loginUserInfo(user))
         })
-    })
+
+
+    }
+    catch (err) {
+        next(err)
+    }
 
 })
 

@@ -2,11 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const morgan = require('morgan')
-//insert expressJWT when completing auth
+const multer = require("multer")
 
 const app = express()
 app.use(morgan('dev'))
 app.use(express.json())
+
+
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGODB_URI,
@@ -24,7 +26,7 @@ app.use('/auth', require('./routes/authRoutes'))
 
 //error handler
 app.use((err, req, res, next) => {
-    console.error(err);
+    console.error(err)
     if (err.name === "UnauthorizedError") {
         res.status(err.status)
     }
