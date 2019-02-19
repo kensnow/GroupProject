@@ -7,8 +7,9 @@ export default class DataHandler extends Component {
         super(props)
         this.state = {
             user: {
-                fName: "",
-                lName: "",
+                /////I changed these from fName and lName, WARNING: may cause bugs ;)
+                firstName: "",
+                lastName: "",
                 token: localStorage.getItem("token") || "",
                 
             },

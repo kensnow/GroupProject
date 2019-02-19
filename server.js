@@ -2,11 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config()
 const morgan = require('morgan')
-//insert expressJWT when completing auth
+const multer = require("multer")
 
 const app = express()
 app.use(morgan('dev'))
 app.use(express.json())
+
+
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGODB_URI,
