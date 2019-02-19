@@ -6,13 +6,13 @@ import FormHandler from '../FormHandler'
 function EditProfile(props) {
 
     const editProfileInputs = {
-        email: props.email ? props.email : "",
-        firstName: props.firstName ? props.firstName : "",
-        lastName: props.lastName ? props.lastName : "",
-        phoneNumber: props.phoneNumber ? props.phoneNumber : "555-555-5555",
-        abilityLevel: props.abilityLevel ? props.abilityLevel : 0,
-        userType: props.userType ? props.userType : "customer",
-        abilityRange: props.abilityRange ? props.abilityRange : ""
+        email: props.email || "",
+        firstName: props.firstName || "",
+        lastName: props.lastName || "",
+        phoneNumber: props.phoneNumber || "555-555-5555",
+        abilityLevel: props.abilityLevel || 0,
+        userType: props.userType || "customer",
+        abilityRange: props.abilityRange || ""
 
     }
 
