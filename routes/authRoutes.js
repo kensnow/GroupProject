@@ -45,17 +45,22 @@ authRouter.post("/signup", (req, res, next) => {
 
 authRouter.post("/login", (req, res, next) => {
     Customer.findOne({ email: `${req.body.email}` }, (err, user) => {
-        const theUser = user
-        if (err) return res.status(500).send(err)
+        //this code is broken for guides logging in.  TODO - fix
+        //error is thrown due to missing user info, even after sucessfully logging in as guide
+        let theUser = user
+        
+        
         if (!user) {
             return Guide.findOne({ email: `${req.body.email}` }, (err, user) => {
                 if (err) return res.status(500).send(err)
                 if (!user) return res.status(403).send({
                     success: false, message: "The email/password combination provided is incorrect"
                 })
+                console.log(user)
                 theUser = user
             })
         }
+        if (err) return res.status(500).send(err)
         theUser.checkPassword(req.body.password, (err, match) => {
             if (err) return res.status(500).send(err)
             if (!match) return res.status(403).send({

@@ -3,6 +3,7 @@ const Booking = require('../models/booking')
 const bookingRouter = express.Router()
 
 bookingRouter.route('/')
+
     .get((req,res,next) => {
         Booking.find()
             .then(bookingCollection => res.status(200).send(bookingCollection))
