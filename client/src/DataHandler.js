@@ -78,6 +78,21 @@ export default class DataHandler extends Component {
             })
     }
 
+    getResorts = () => {
+        return axios.get('/api/resorts')
+            .then(res => {
+                const resortCollection = res.data
+                this.setState({
+                    resorts:resortCollection
+                })
+                return res
+            })
+            .catch(err => {
+                this.setState({errMsg: err.response.data.message})
+                return err
+            })
+    }
+
     //use book services for adding guide and/or resort to state
     bookService = (serviceType, serviceId) => {
         const bookingState = {...this.state.booking}
@@ -88,11 +103,12 @@ export default class DataHandler extends Component {
     //use book now to send date object, guide id and resort id into booking collection.
     //with response object, populate booking object in guide and user collections
     bookNow = (props)=> {
-
+        
     }
 
     componentDidMount(){
         this.getGuides()
+        this.getResorts()
     }
 
     render() {

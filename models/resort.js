@@ -5,12 +5,13 @@ const bcrypt = require('bcrypt')
 const resortSchema = new mongoose.Schema({
     name:String,
     city:String,
-    State:String,
+    state:String,
     guides: [{
         type:objectId,
         ref:'Guide'
     }],
     trails:Number,
+    acres:Number,
     description:String,
     priceRating:Number
 })
