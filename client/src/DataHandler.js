@@ -24,7 +24,8 @@ class DataHandler extends Component {
             errMsg: "",
             showLoginForm: true,
             resorts: [],
-            guides: []
+            guides: [],
+            notification: ""
         }
     }
 

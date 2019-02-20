@@ -41,8 +41,7 @@ function BookingPage(props) {
                     <FormHandler inputs={formInputs} submit={(inputs) => {const res = props.bookNow(inputs).then((res) => !bookingConfirm)}} >
                         {
                             ({inputs, handleChange, handleSubmit}) => {
-                                {bookingConfirm ? <div></div> : <div></div>
-                                }
+
                                 return(
                                     <form onSubmit={handleSubmit}>
                                         <input onChange={handleChange} type="date" name="date"/>
