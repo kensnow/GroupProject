@@ -3,7 +3,7 @@ import { Link} from "react-router-dom"
 
 function GuideCard(props) {
     const {_id, nickName, firstName, lastName, profileImg, dailyRate, aboutMe, bookings, abilityRange, resorts, reviews} = props
-    console.log(_id)
+
     const resortMap = resorts.map((resort, i) =>{
         //need to incl;ude logic to search for resort id in state & get sub-info ie. name
         return(<Link to={`resort/${resort}`}>{resort}</Link>)
@@ -33,7 +33,7 @@ function GuideCard(props) {
                             <p className="card__price-only">Only</p>
                             <p className="card__price-value">${dailyRate}</p>
                         </div>
-                        <button onClick={() => props.bookService("guide",_id)} className="btn btn-white">Select {firstName}!</button>
+                        <button onClick={() => props.bookService("guide",_id)} className="resort-btn">Select {firstName}!</button>
                     </div>
                 </div>
             </div>

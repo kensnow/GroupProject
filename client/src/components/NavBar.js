@@ -1,8 +1,9 @@
 import React from 'react'
-import LoginForm from "./LoginForm"
-import { Link, Route } from "react-router-dom"
+import { withDataHandler } from "../DataHandler"
+import { Link } from "react-router-dom"
 
-const NavBar = () => {
+const NavBar = (props) => {
+
     return (
 
         <nav id='main-nav'>
@@ -14,13 +15,17 @@ const NavBar = () => {
 
             </div>
             <ul>
+                {props.token ?
+                    <li>
+                        <a onClick={props.logout}>Logout</a>
+                    </li> : null}
                 <li> <Link to="/myprofile"> Profile</Link> </li>
                 <li> <Link to="/booking"> Booking </Link> </li>
                 <li> <Link to="/guides"> Guides</Link> </li>
                 <li> <Link to="/resorts"> Resorts</Link> </li>
 
+
             </ul>
-            <LoginForm />
 
 
 
@@ -29,4 +34,4 @@ const NavBar = () => {
     )
 }
 
-export default NavBar
+export default withDataHandler(NavBar)

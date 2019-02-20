@@ -1,8 +1,8 @@
 import React from 'react'
 
 function ResortCard(props) {
-    const { _id, name, city, state, guides, trails, description, priceRating, acres } = props
-    console.log(props)
+  
+    const {_id, name, city, state, guides, trails, description, priceRating, acres} = props
     //map through guides and create a guide cardlett for each
     return (
         <div className="col-1-of-3">
