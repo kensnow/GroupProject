@@ -80,6 +80,8 @@
         @include phoneSize
             //this is for the height of the div contianing the data displayed..the card itself
             height: 25rem
+        @include tabletSize
+            height: 35rem
       
         &--front
             background-color: $color-white
@@ -116,6 +118,8 @@
         clip-path: polygon(0% 0%, 125% 0%, 80% 100%, 0% 100%)
         @include phoneSize
             height: 12rem
+        @include tabletSize
+            height: 14rem
         
         &--4
             background-image: linear-gradient(to left bottom, 
@@ -163,6 +167,9 @@
         @include phoneSize
             font-size: 1rem
             transform: translate(8rem, -5rem)
+        @include tabletSize
+            font-size: 1.8rem
+            transform: translate(-0.5rem, 0rem)
         
     &__headingResorts--span
         padding: .5rem 1rem
@@ -170,6 +177,9 @@
         box-decoration-break: clone //how it renders when the line is broken down
         @include phoneSize
             padding: .25rem .5rem
+        @include tabletSize
+            padding: .5rem .5rem
+
 
         &--1
             background-image: linear-gradient(to right bottom, 
@@ -188,6 +198,8 @@
                 @include phoneSize
                     font-size: 1.1rem
                     font-weight: 400
+                @include tabletSize
+                    font-size: 1.4rem
 
                 &:not(:last-child)
-                    border-bottom: 1px solid $color-grey-light-2
+                    border-bottom: 1px solid $color-black 
