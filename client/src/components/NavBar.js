@@ -1,8 +1,7 @@
 import React from 'react'
-import LoginForm from "./LoginForm"
+import { withDataHandler } from "../DataHandler"
 import { Link} from "react-router-dom"
 import {withDataHandler} from '../DataHandler'
-
 
 const NavBar = (props) => {
     
@@ -21,10 +20,9 @@ const NavBar = (props) => {
                 <li> <Link to="/booking"> Booking </Link> </li>
                 <li> <Link to="/guides"> Guides</Link> </li>
                 <li> <Link to="/resorts"> Resorts</Link> </li>
-
+                {props.token ? <li><p className="login-box"onClick={props.logout}>Logout</p></li> : null}
             </ul>
-            <LoginForm />
-
+            
 
 
         </nav>

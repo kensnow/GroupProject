@@ -1,8 +1,6 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
 import lib from './lib/index.js'
-
-import { withRouter } from "react-router-dom"
 export const { Consumer, Provider } = createContext()
 const tokenAxios = axios.create()
 
@@ -22,10 +20,10 @@ class DataHandler extends Component {
                 guide: "",
                 resort: "",
             },
-            errMsg:"",
-            resorts:[],
-            guides:[],
-            bookings:[]
+            errMsg: "",
+            showLoginForm: true,
+            resorts: [],
+            guides: []
         }
     }
 
@@ -35,10 +33,14 @@ class DataHandler extends Component {
             ...props
         })
             .then(res => {
-                const { user } = res.data
+                const { user, token } = res.data
                 this.setState({
-                    user: { ...user }
-                })
+                    user,
+                    token
+                }, () => {
+                    localStorage.setItem("token", token)
+                    localStorage.setItem("user", JSON.stringify(user))
+                    })
                 this.props.history.push("/myprofile")
                 this.getGuides()
                 this.getResorts()
@@ -73,13 +75,28 @@ class DataHandler extends Component {
                 return err
             })
     }
+
+    logout = () => {
+        console.log("im here")
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        this.setState({
+            user: {},
+            token: ""
+        })
+        this.props.history.push("/")
+    }
+
     updateAvatar = (filename) => {
         this.setState(ps => ({
             user: {
                 ...ps.user,
                 avatar: filename
             }
-        }))
+        }),
+            localStorage.setItem("user", JSON.stringify(this.state.user))
+        )
+
     }
     //do a get request to database guide collection & populate state guides array with guide objects
     getGuides = () => {
@@ -196,7 +213,8 @@ class DataHandler extends Component {
         const value = {
             signUp: this.signUp,
             logIn: this.logIn,
-            bookService:this.bookService,
+            logout: this.logout,
+            bookService: this.bookService,
             bookNow:this.bookNow,
             updateAvatar: this.updateAvatar,
             ...this.state

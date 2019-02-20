@@ -1,5 +1,6 @@
 import React from 'react'
 import AboutPage from './AboutPage'
+import LoginForm from "./LoginForm"
 
 function LandingPage() {
     return (
@@ -10,6 +11,7 @@ function LandingPage() {
                         <span className="heading-primary-main">Ski with a local.</span> <br />
                         <span className="heading-primary-sub">Ski like a local.</span>
                     </h1>
+                    <LoginForm />
                     <a href="/auth/signup" className="btn btn-white btn-animated"> Sign Up </a>
                 </div>
             </div>

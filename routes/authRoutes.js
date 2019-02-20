@@ -70,9 +70,6 @@ const loginUserInfo = (user) => {
     }
 }
 
-const checkPassword = (user) => {
-
-}
 
 
 module.exports = authRouter
