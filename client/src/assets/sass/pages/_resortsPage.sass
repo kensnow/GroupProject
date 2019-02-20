@@ -18,6 +18,9 @@
         @include phoneSize
             height: 35vh
             top: 50%
+        @include tabletSize
+            height: 20vh
+            top: 40%
     .heading-primary-resort
         color: $color-white
         text-transform: uppercase
@@ -53,6 +56,9 @@
         width: 75%
         transform: translateY(48rem)
         margin: auto
+    @include tabletSize
+        width: 55%
+        margin: auto
 
 .card
     perspective: 150rem
@@ -63,6 +69,8 @@
     @include phoneSize 
         // this is the height of the containing div
         height: 26rem
+    @include tabletSize
+        height: 55rem
 
     &__side
         position: absolute
@@ -79,10 +87,12 @@
             //this is for the height of the div contianing the data displayed..the card itself
             height: 25rem
         @include tabletSize
-            height: 35rem
+            height: 45rem
+            top: 15rem
+           
       
         &--front
-            background-color: $color-white
+            background-color: $color-primary-light
 
         &--back 
             transform: rotateY(-180deg)
@@ -117,7 +127,8 @@
         @include phoneSize
             height: 12rem
         @include tabletSize
-            height: 14rem
+            height: 24rem
+            background-position: center
         
         &--4
             background-image: linear-gradient(to left bottom, 
@@ -167,7 +178,7 @@
             transform: translate(8rem, -5rem)
         @include tabletSize
             font-size: 1.8rem
-            transform: translate(-0.5rem, 0rem)
+            
         
     &__headingResorts--span
         padding: .5rem 1rem
@@ -176,7 +187,7 @@
         @include phoneSize
             padding: .25rem .5rem
         @include tabletSize
-            padding: .5rem .5rem
+            padding: .75rem .5rem
 
 
         &--1
@@ -197,7 +208,7 @@
                     font-size: 1.1rem
                     font-weight: 400
                 @include tabletSize
-                    font-size: 1.4rem
+                    font-size: 1.1rem
 
                 &:not(:last-child)
                     border-bottom: 1px solid $color-black 

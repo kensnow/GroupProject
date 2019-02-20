@@ -26,9 +26,9 @@ const guideSchema = new mongoose.Schema({
         type: String,
         enum: ["customer", "guide"]
     },
-    profileImg: {
-        type: Buffer,
-        contentType: String
+    avatar: {
+        type: String,
+        default: "nouser.jpg"
     },
     aboutMe: String,
     bookings: [{
@@ -65,7 +65,7 @@ guideSchema.methods.withoutSensitiveInfo = function () {
     const user = this.toObject()
     delete user.password
     delete user.email
-    delete user.lname
+    delete user.lastname
     return user
 }
 
