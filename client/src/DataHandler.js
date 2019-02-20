@@ -1,6 +1,7 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
 import lib from './lib/index.js'
+import {withRouter} from 'react-router-dom'
 export const { Consumer, Provider } = createContext()
 const tokenAxios = axios.create()
 
@@ -38,13 +39,14 @@ class DataHandler extends Component {
                     user,
                     token
                 }, () => {
+                    this.props.history.push("/myprofile")
+                    this.getGuides()
+                    this.getResorts()
+                    this.getBookings()
                     localStorage.setItem("token", token)
                     localStorage.setItem("user", JSON.stringify(user))
                     })
-                this.props.history.push("/myprofile")
-                this.getGuides()
-                this.getResorts()
-                this.getBookings()
+
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
@@ -145,10 +147,12 @@ class DataHandler extends Component {
     }
 
     //use book services for adding guide and/or resort to state
-    bookService = (serviceType, serviceId) => {
+    bookService = async (serviceType, serviceId) => {
         const bookingState = { ...this.state.booking }
         bookingState[serviceType] = serviceId
-        this.setState({ booking: bookingState })
+        await this.setState({ booking: bookingState })
+        await this.state.booking.guide && this.state.booking.resort ? this.props.history.push("/booking") : this.state.booking.guide ? this.props.history.push("/resorts") : this.props.history.push("/guides")
+
     }
 
     //use book now to send date object, guide id and resort id into booking collection.
