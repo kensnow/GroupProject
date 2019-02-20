@@ -1,14 +1,14 @@
 import React from "react"
 import { render } from "react-dom"
 import App from "./App"
-import {BrowserRouter} from "react-router-dom" 
+import { BrowserRouter } from "react-router-dom"
 import DataHandler from "./DataHandler"
 
 render(
-    <DataHandler>
-        <BrowserRouter>
+    <BrowserRouter>
+        <DataHandler>
             <App />
-        </BrowserRouter>
-    </DataHandler>,
+        </DataHandler>
+    </BrowserRouter>,
     document.getElementById("root"))
 
