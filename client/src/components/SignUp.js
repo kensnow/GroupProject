@@ -49,15 +49,6 @@ const SignUp = (props) => {
 
     return (
         <div className="signupWrapper">
-
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
             <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={(inputs) => props.signUp(inputs)}>
 
                 {
