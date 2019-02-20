@@ -26,7 +26,10 @@ const guideSchema = new mongoose.Schema({
         type: String,
         enum: ["customer", "guide"]
     },
-    avatar: String,
+    avatar: {
+        type: String,
+        default: "nouser.jpg"
+    },
     aboutMe: String,
     bookings: [{
         type: objectId,
