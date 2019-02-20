@@ -1,0 +1,31 @@
+.resort-btn
+    background-color: $color-white
+    border-radius: 10rem
+    height: 5rem
+    width: 15rem
+    box-shadow: 0 .25rem .5rem rgba($color-black, 0.2)
+    font-size: 1.6rem
+    @include phoneSize
+        font-size: 1.2rem
+        width: 12rem
+    &:link, &:visited
+        text-transform: uppercase
+        text-decoration: none
+        padding: 1.5rem 4rem
+        margin-bottom: 3rem
+        display: inline-block
+        border-radius: 10rem
+        transition: all .2
+        position: relative
+        font-size: $default-font-size
+
+      
+    &:hover
+        transform: translateY(-0.3rem)
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.2)
+        &::after
+            transform: scaleX(1.5) scaleY(1.6)
+            opacity: 0
+    &:active
+        transform: translateY(-0.1rem)
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2)
