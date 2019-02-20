@@ -5,7 +5,7 @@ function ResortCardlette(props) {
     return (
         <div>
             <div>{image}</div>
-            {name}
+            <h3>{name}</h3>
             {city}, {state}
         </div>
     )

@@ -3,7 +3,6 @@ import {withDataHandler} from '../DataHandler'
 import GuideCard from './GuideCard'
 
 function GuidesPage(props) {
-    console.log(props)
 
     const guideList = props.guides.map((guide, i) => <GuideCard key={i} {...guide} guideNum={i} bookService={props.bookService}/>)
     //pass down guide object array to guide cards, render new guide card for each guide in database
