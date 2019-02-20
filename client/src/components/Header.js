@@ -1,12 +1,13 @@
 import React from 'react'
 import NavBar from "./NavBar"
+import { withDataHandler } from "../DataHandler"
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className="header">
-            <NavBar />
+            {props.token ? <NavBar /> : null}
         </header>
     )
 }
 
-export default Header
+export default withDataHandler(Header)
