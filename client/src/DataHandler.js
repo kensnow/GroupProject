@@ -105,7 +105,7 @@ export default class DataHandler extends Component {
     }
 
     getBookings = () => {
-        return axios.get('/api/bookings')
+        return tokenAxios.get('/api/bookings')
             .then(res => {
                 const bookingCollection = res.data
                 this.setState({
@@ -137,7 +137,10 @@ export default class DataHandler extends Component {
             console.log(prevRes)
             const prevApt = lib.getObjectData(prevRes,this.state.bookings)
             console.log(prevApt)
+            console.log(this.state.bookings)
+
             const prevAptDate = new Date(prevApt.date)
+            console.log(prevAptDate)
             return lib.getEasyDate(prevAptDate) === lib.getEasyDate(resDate)
         })
         console.log(prevBookings)
@@ -153,20 +156,20 @@ export default class DataHandler extends Component {
                 groupSize: groupSize
             }
 
-            axios.post('/api/bookings', {
+            tokenAxios.post('/api/bookings', {
                 ...resvObj
             })
                 .then(res => {
                     console.log (res)
                     //update guide with booking, update user/customer with booking
-                   return axios.put(`/api/guides/${guide._id}`,{
+                   return tokenAxios.put(`/api/guides/${guide._id}`,{
                         bookings: [...guide.bookings, res.data._id]
                     })
                     .then(() => res.data._id)
                 })
                 .then(bookingId => {
                     
-                   return axios.put(`/api/customers/${user._id}`,{
+                   return tokenAxios.put(`/api/customers/${user._id}`,{
                         bookings: [...user.bookings, bookingId]
                     })
                 })
