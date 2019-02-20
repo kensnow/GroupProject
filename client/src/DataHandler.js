@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
-import { withRouter } from "react-router-dom"
 import lib from './lib/index.js'
 
 import { withRouter } from "react-router-dom"
@@ -41,6 +40,9 @@ class DataHandler extends Component {
                     user: { ...user }
                 })
                 this.props.history.push("/myprofile")
+                this.getGuides()
+                this.getResorts()
+                this.getBookings()
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
@@ -59,8 +61,12 @@ class DataHandler extends Component {
                     user,
                     token     
                 })
+                this.getGuides()
+                this.getResorts()
+                this.getBookings()
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
+            
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
@@ -181,11 +187,9 @@ class DataHandler extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getGuides()
-        this.getResorts()
-        this.getBookings()
-    }
+    // componentDidMount() {
+
+    // }
 
 
     render() {
