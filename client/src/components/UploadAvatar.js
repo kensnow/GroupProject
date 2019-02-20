@@ -1,6 +1,7 @@
 import React from 'react'
 const axios = require('axios')
 const imageAxios = axios.create()
+const { withDataHandler } = require("../DataHandler")
 
 imageAxios.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
@@ -8,10 +9,11 @@ imageAxios.interceptors.request.use((config) => {
     return config;
 })
 
-const App = () =>  {
-   
+const App = (props) => {
+
     const uploadImage = (imageData) => {
-        imageAxios.post('/api/avatar', imageData).then(response => console.log(response.data))
+        imageAxios.post('/api/avatar', imageData)
+        .then(response => props.updateAvatar(response.data.filename))
     }
 
     const setImage = (e) => {
@@ -24,14 +26,14 @@ const App = () =>  {
             uploadImage(data)
         }
     }
-        return (
-            <div>
-                <input type="file" name="avatar" id="avatar" style={{display: "none"}}  onChange={(e) => setImage(e)} />
-                <label className="Change-Image-Button" htmlFor="avatar">Change Image</label>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <input type="file" name="avatar" id="avatar" style={{ display: "none" }} onChange={(e) => setImage(e)} />
+            <label className="Change-Image-Button" htmlFor="avatar">Change Image</label>
+        </div>
+    )
+}
 
-export default App
+export default withDataHandler(App)
 
 //Get rid of the filename being displayed
