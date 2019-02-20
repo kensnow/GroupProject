@@ -28,7 +28,7 @@ function BookingPage(props) {
                 <h1>Book Now!</h1>
             </div>
             <div>
-                {guideDat ?  <GuideCardlette {...guideDat}/> : <Link to='/guides'>Select a guide!</Link>}
+                {guideDat ?  <GuideCardlette {...guideDat}/> : <Link to='/guides'>Select a Guide!</Link>}
             </div>
             <div>
                 {resortDat ? <ResortCardlette {...resortDat}/> : <Link to="/resorts">Select a Resort!</Link>}

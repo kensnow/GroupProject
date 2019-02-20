@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
-import { withRouter } from "react-router-dom"
 import lib from './lib/index.js'
 export const { Consumer, Provider } = createContext()
 const tokenAxios = axios.create()
@@ -43,6 +42,9 @@ class DataHandler extends Component {
                     localStorage.setItem("user", JSON.stringify(user))
                     })
                 this.props.history.push("/myprofile")
+                this.getGuides()
+                this.getResorts()
+                this.getBookings()
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
@@ -59,13 +61,14 @@ class DataHandler extends Component {
                 const { user, token } = res.data
                 this.setState({
                     user,
-                    token
-                }, () => {
+                    token     
+                })
+                this.getGuides()
+                this.getResorts()
+                this.getBookings()
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
-                }
-            )
-                
+            
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
@@ -201,11 +204,9 @@ class DataHandler extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getGuides()
-        this.getResorts()
-        this.getBookings()
-    }
+    // componentDidMount() {
+
+    // }
 
 
     render() {
