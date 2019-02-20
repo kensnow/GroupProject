@@ -1,9 +1,9 @@
 import React from 'react'
 import { withDataHandler } from "../DataHandler"
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const NavBar = (props) => {
-    
+
     return (
 
         <nav id='main-nav'>
@@ -15,13 +15,18 @@ const NavBar = (props) => {
 
             </div>
             <ul>
+                {props.token ?
+                    <li>
+                        <a onClick={props.logout}>Logout</a>
+                    </li> : null}
                 <li> <Link to="/myprofile"> Profile</Link> </li>
                 <li> <Link to="/booking"> Booking </Link> </li>
                 <li> <Link to="/guides"> Guides</Link> </li>
                 <li> <Link to="/resorts"> Resorts</Link> </li>
-                {props.token ? <li><p className="login-box"onClick={props.logout}>Logout</p></li> : null}
+
+
             </ul>
-            
+
 
 
         </nav>
