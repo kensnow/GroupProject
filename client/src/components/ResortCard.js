@@ -1,14 +1,14 @@
 import React from 'react'
 
 function ResortCard(props) {
-    const {_id, name, city, state, guides, trails, description, priceRating, acres} = props
-    console.log (props)
+    const { _id, name, city, state, guides, trails, description, priceRating, acres } = props
+    console.log(props)
     //map through guides and create a guide cardlett for each
     return (
         <div className="col-1-of-3">
             <div className="card">
                 <div className="card__side card__side--front">
-                    <div className="card__picture card__picture--4"></div>
+                    <div className="card__picture card__picture--1"></div>
                     <h4 className="card__headingResorts">
                         <span className="card__headingResorts--span card__headingResorts--span--1" >{name}</span>
                     </h4>
@@ -30,7 +30,7 @@ function ResortCard(props) {
                             </p>
 
                         </div>
-                        <button onClick={() => props.bookService("resort",_id)} className="btn btn-white">Select {name}!</button>
+                        <button className="resort-btn" onClick={() => props.bookService("resort", _id)} >Select {name}!</button>
                     </div>
                 </div>
             </div>
