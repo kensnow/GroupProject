@@ -11,7 +11,7 @@ avatarRouter.post('/', upload.single('file'), async (req, res) => {
             let customer = await Customer.findByIdAndUpdate(req.user._id, { avatar: req.file.filename })
             let guide = await Guide.findByIdAndUpdate(req.user._id, { avatar: req.file.filename });
 
-            res.status(200).send({message: 'Update successful'})
+            res.status(200).send({message: 'Update successful', filename: req.file.filename})
         } else {
             throw Error('No file sent')
         }
@@ -22,10 +22,5 @@ avatarRouter.post('/', upload.single('file'), async (req, res) => {
     }
 })
 
-//
-avatarRouter.get('/:filename', (req, res) => {
-    var filename = req.params.filename
-    res.sendFile(__dirname + path.join('..', 'avatars', filename))
-})
 
 module.exports = avatarRouter

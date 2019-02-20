@@ -1,8 +1,13 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
+<<<<<<< HEAD
 import lib from './lib/index.js'
 
 export const {Consumer, Provider} = createContext()
+=======
+import { withRouter } from "react-router-dom"
+export const { Consumer, Provider } = createContext()
+>>>>>>> 6a5ad96a2603d8850b7756013273fa13b3e59706
 const tokenAxios = axios.create()
 
 tokenAxios.interceptors.request.use((config) => {
@@ -11,20 +16,15 @@ tokenAxios.interceptors.request.use((config) => {
     return config;
 })
 
-export default class DataHandler extends Component {
+class DataHandler extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: {
-                /////I changed these from fName and lName, WARNING: may cause bugs ;)
-                firstName: "",
-                lastName: "",
-                avatar: "",
-                token: localStorage.getItem("token") || "", 
-            },
-            booking:{
-                guide:"",
-                resort:"",
+            user: JSON.parse(localStorage.getItem("user")) || {},
+            token: localStorage.getItem("token") || "",
+            booking: {
+                guide: "",
+                resort: "",
             },
             errMsg:"",
             resorts:[],
@@ -35,18 +35,18 @@ export default class DataHandler extends Component {
 
 
     signUp = (props) => {
-        return axios.post(`/auth/signup/`,{
+        return axios.post(`/auth/signup/`, {
             ...props
         })
             .then(res => {
-                const {user} = res.data
+                const { user } = res.data
                 this.setState({
-                    user: {...user}
+                    user: { ...user }
                 })
-                return res
+                this.props.history.push("/myprofile")
             })
             .catch(err => {
-                this.setState({errMsg: err.response.data.message})
+                this.setState({ errMsg: err.response.data.message })
                 return err
             })
 
@@ -56,35 +56,40 @@ export default class DataHandler extends Component {
         return axios.post('/auth/login', {
             ...props
         })
-        .then(res => {
-                const {user, token} = res.data
+            .then(res => {
+                const { user, token } = res.data
                 this.setState({
-                    user: {
-                        ...user,
-                        token                    
-                    }
+                    user,
+                    token     
                 })
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
-        })
-        .catch(err => {
-            this.setState({errMsg: err.response.data.message})
-            return err
-        })
+            })
+            .catch(err => {
+                this.setState({ errMsg: err.response.data.message })
+                return err
+            })
     }
-
+    updateAvatar = (filename) => {
+        this.setState(ps => ({
+            user: {
+                ...ps.user,
+                avatar: filename
+            }
+        }))
+    }
     //do a get request to database guide collection & populate state guides array with guide objects
     getGuides = () => {
         return tokenAxios.get('/api/guides')
             .then(res => {
                 const guideCollection = res.data
                 this.setState({
-                    guides:guideCollection
+                    guides: guideCollection
                 })
                 return res
             })
             .catch(err => {
-                this.setState({errMsg: err.response.data.message})
+                this.setState({ errMsg: err.response.data.message })
                 return err
             })
     }
@@ -94,12 +99,12 @@ export default class DataHandler extends Component {
             .then(res => {
                 const resortCollection = res.data
                 this.setState({
-                    resorts:resortCollection
+                    resorts: resortCollection
                 })
                 return res
             })
             .catch(err => {
-                this.setState({errMsg: err.response.data.message})
+                this.setState({ errMsg: err.response.data.message })
                 return err
             })
     }
@@ -121,9 +126,9 @@ export default class DataHandler extends Component {
 
     //use book services for adding guide and/or resort to state
     bookService = (serviceType, serviceId) => {
-        const bookingState = {...this.state.booking}
+        const bookingState = { ...this.state.booking }
         bookingState[serviceType] = serviceId
-        this.setState({booking:bookingState})
+        this.setState({ booking: bookingState })
     }
 
     //use book now to send date object, guide id and resort id into booking collection.
@@ -179,7 +184,7 @@ export default class DataHandler extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getGuides()
         this.getResorts()
         this.getBookings()
@@ -192,20 +197,22 @@ export default class DataHandler extends Component {
             logIn: this.logIn,
             bookService:this.bookService,
             bookNow:this.bookNow,
+            updateAvatar: this.updateAvatar,
             ...this.state
 
         }
         return (
-            <Provider value = {value}>
+            <Provider value={value}>
                 {this.props.children}
             </Provider>
         )
     }
 }
 
+export default withRouter(DataHandler)
 
 export const withDataHandler = C => props => (
     <Consumer>
-            {value => <C {...value}{...props} />}
+        {value => <C {...value}{...props} />}
     </Consumer>
 )
