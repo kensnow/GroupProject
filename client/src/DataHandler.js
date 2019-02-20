@@ -217,9 +217,11 @@ class DataHandler extends Component {
         }
     }
 
-    // componentDidMount() {
-
-    // }
+    componentDidMount() {
+        this.getGuides()
+        this.getResorts()
+        this.getBookings()
+    }
 
 
     render() {
