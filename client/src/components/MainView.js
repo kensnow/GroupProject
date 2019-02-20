@@ -5,7 +5,7 @@ import ResortsPage from './ResortsPage'
 import GuidesPage from './GuidesPage'
 import BookingPage from './BookingPage'
 import SignUp from './SignUp'
-import EditProfile from './EditProfile';
+import EditProfile from './EditProfileForm';
 import ProfilePage from './ProfilePage';
 import ProtectedRoute from "./ProtectedRoute"
 
