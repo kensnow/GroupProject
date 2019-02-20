@@ -18,9 +18,9 @@ const LoginForm = (props) => {
                         <form onSubmit={handleSubmit} className="login-box">
                             <input onChange={handleChange} type="email" name="email" />
                             <input onChange={handleChange} type="password" name="password" />
-
                             <button className="btn-white btn btn-animated"> Submit </button>
                         </form>
+                        
                     )
                 }
             }

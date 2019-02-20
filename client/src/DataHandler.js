@@ -21,6 +21,7 @@ class DataHandler extends Component {
                 resort: "",
             },
             errMsg: "",
+            showLoginForm: true,
             resorts: [],
             guides: []
         }
@@ -32,10 +33,14 @@ class DataHandler extends Component {
             ...props
         })
             .then(res => {
-                const { user } = res.data
+                const { user, token } = res.data
                 this.setState({
-                    user: { ...user }
-                })
+                    user,
+                    token
+                }, () => {
+                    localStorage.setItem("token", token)
+                    localStorage.setItem("user", JSON.stringify(user))
+                    })
                 this.props.history.push("/myprofile")
             })
             .catch(err => {
@@ -53,23 +58,41 @@ class DataHandler extends Component {
                 const { user, token } = res.data
                 this.setState({
                     user,
-                    token     
-                })
+                    token
+                }, () => {
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
+                }
+            )
+                
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
                 return err
             })
     }
+
+    logout = () => {
+        console.log("im here")
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        this.setState({
+            user: {},
+            token: ""
+        })
+        this.props.history.push("/")
+    }
+
     updateAvatar = (filename) => {
         this.setState(ps => ({
             user: {
                 ...ps.user,
                 avatar: filename
             }
-        }))
+        }),
+            localStorage.setItem("user", JSON.stringify(this.state.user))
+        )
+
     }
     //do a get request to database guide collection & populate state guides array with guide objects
     getGuides = () => {
@@ -125,6 +148,7 @@ class DataHandler extends Component {
         const value = {
             signUp: this.signUp,
             logIn: this.logIn,
+            logout: this.logout,
             bookService: this.bookService,
             updateAvatar: this.updateAvatar,
             ...this.state
