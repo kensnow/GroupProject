@@ -63,14 +63,14 @@ class DataHandler extends Component {
                 const { user, token } = res.data
                 this.setState({
                     user,
-                    token     
+                    token
                 })
                 this.getGuides()
                 this.getResorts()
                 this.getBookings()
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
-            
+
             })
             .catch(err => {
                 this.setState({ errMsg: err.response.data.message })
@@ -96,9 +96,18 @@ class DataHandler extends Component {
                 avatar: filename
             }
         }),
-            localStorage.setItem("user", JSON.stringify(this.state.user))
+            localStorage.setItem("user1", JSON.stringify(this.state.user))
         )
 
+    }
+
+    toggleLoginForm = () => {
+        this.setState(ps => (
+            {
+                ...ps,
+                showLoginForm: !ps.showLoginForm
+            }
+        ))
     }
     //do a get request to database guide collection & populate state guides array with guide objects
     getGuides = () => {
@@ -136,12 +145,12 @@ class DataHandler extends Component {
             .then(res => {
                 const bookingCollection = res.data
                 this.setState({
-                    bookings:bookingCollection
+                    bookings: bookingCollection
                 })
                 return res
             })
             .catch(err => {
-                this.setState({errMsg: err.response.data.message})
+                this.setState({ errMsg: err.response.data.message })
                 return err
             })
     }
@@ -157,14 +166,14 @@ class DataHandler extends Component {
 
     //use book now to send date object, guide id and resort id into booking collection.
     //with response object, populate booking object in guide and user collections
-    bookNow = (reservation)=> {
+    bookNow = (reservation) => {
         //first, search guideid for date availability
-        const {guide, resort, user, date, groupSize} = reservation
+        const { guide, resort, user, date, groupSize } = reservation
         const resDate = new Date(date)
         const prevBookings = guide.bookings.find(prevRes => {
             //get date from bookings object
             console.log(prevRes)
-            const prevApt = lib.getObjectData(prevRes,this.state.bookings)
+            const prevApt = lib.getObjectData(prevRes, this.state.bookings)
             console.log(prevApt)
             console.log(this.state.bookings)
 
@@ -175,7 +184,7 @@ class DataHandler extends Component {
         console.log(prevBookings)
         //need to test if this is working once we have some reservations in the system
 
-        if(!prevBookings){
+        if (!prevBookings) {
             //prepare reservation object
             const resvObj = {
                 guide: guide._id,
@@ -189,16 +198,16 @@ class DataHandler extends Component {
                 ...resvObj
             })
                 .then(res => {
-                    console.log (res)
+                    console.log(res)
                     //update guide with booking, update user/customer with booking
-                   return tokenAxios.put(`/api/guides/${guide._id}`,{
+                    return tokenAxios.put(`/api/guides/${guide._id}`, {
                         bookings: [...guide.bookings, res.data._id]
                     })
-                    .then(() => res.data._id)
+                        .then(() => res.data._id)
                 })
                 .then(bookingId => {
-                    
-                   return tokenAxios.put(`/api/customers/${user._id}`,{
+
+                    return tokenAxios.put(`/api/customers/${user._id}`, {
                         bookings: [...user.bookings, bookingId]
                     })
                 })
@@ -219,8 +228,9 @@ class DataHandler extends Component {
             logIn: this.logIn,
             logout: this.logout,
             bookService: this.bookService,
-            bookNow:this.bookNow,
+            bookNow: this.bookNow,
             updateAvatar: this.updateAvatar,
+            toggleLoginForm: this.toggleLoginForm,
             ...this.state
 
         }
