@@ -172,16 +172,10 @@ class DataHandler extends Component {
         const resDate = new Date(date)
         const prevBookings = guide.bookings.find(prevRes => {
             //get date from bookings object
-            console.log(prevRes)
             const prevApt = lib.getObjectData(prevRes, this.state.bookings)
-            console.log(prevApt)
-            console.log(this.state.bookings)
-
             const prevAptDate = new Date(prevApt.date)
-            console.log(prevAptDate)
             return lib.getEasyDate(prevAptDate) === lib.getEasyDate(resDate)
         })
-        console.log(prevBookings)
         //need to test if this is working once we have some reservations in the system
 
         if (!prevBookings) {
@@ -194,7 +188,7 @@ class DataHandler extends Component {
                 groupSize: groupSize
             }
 
-            tokenAxios.post('/api/bookings', {
+            return tokenAxios.post('/api/bookings', {
                 ...resvObj
             })
                 .then(res => {
@@ -222,7 +216,6 @@ class DataHandler extends Component {
         this.getResorts()
         this.getBookings()
     }
-
 
     render() {
         const value = {

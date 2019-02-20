@@ -11,6 +11,7 @@ function BookingPage(props) {
     const {user, guides, resorts, booking} = props
 
     //build guide & resort cardlett
+    let bookingConfirm = false
     const guideDat = lib.getObjectData(booking.guide, guides)
     const resortDat = lib.getObjectData(booking.resort, resorts)
     const formInputs = {
@@ -37,9 +38,11 @@ function BookingPage(props) {
             <div>
                 
                 {resortDat && guideDat ? 
-                    <FormHandler inputs={formInputs} submit={(inputs) => props.bookNow(inputs)} >
+                    <FormHandler inputs={formInputs} submit={(inputs) => {const res = props.bookNow(inputs).then((res) => !bookingConfirm)}} >
                         {
                             ({inputs, handleChange, handleSubmit}) => {
+                                {bookingConfirm ? <div></div> : <div></div>
+                                }
                                 return(
                                     <form onSubmit={handleSubmit}>
                                         <input onChange={handleChange} type="date" name="date"/>
