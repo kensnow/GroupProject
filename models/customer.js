@@ -24,6 +24,7 @@ const customerSchema = new mongoose.Schema({
         enum: [0, 1, 2, 3]
     },
     phoneNumber: String,
+    avatar: String,
     userType:{
         type:String,
         enum:["Customer","Guide"]
@@ -58,7 +59,7 @@ customerSchema.methods.withoutSensitiveInfo = function () {
     const user = this.toObject()
     delete user.password
     delete user.email
-    delete user.lname
+    delete user.lastname
     return user
 }
 

@@ -5,5 +5,6 @@ apiRouter.use('/customers', require('./customerRoutes'));
 apiRouter.use('/guides', require('./guideRoutes'));
 apiRouter.use('/resorts', require('./resortRoutes'));
 apiRouter.use('/bookings', require('./bookingRoutes'));
+apiRouter.use('/avatar', require('./avatarRoutes'));
 
 module.exports = apiRouter

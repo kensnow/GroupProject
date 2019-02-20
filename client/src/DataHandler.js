@@ -1,6 +1,13 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
 export const {Consumer, Provider} = createContext()
+const tokenAxios = axios.create()
+
+tokenAxios.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 export default class DataHandler extends Component {
     constructor(props) {
@@ -10,6 +17,7 @@ export default class DataHandler extends Component {
                 /////I changed these from fName and lName, WARNING: may cause bugs ;)
                 firstName: "",
                 lastName: "",
+                avatar: "",
                 token: localStorage.getItem("token") || "", 
             },
             booking:{
@@ -64,7 +72,7 @@ export default class DataHandler extends Component {
 
     //do a get request to database guide collection & populate state guides array with guide objects
     getGuides = () => {
-        return axios.get('/api/guides')
+        return tokenAxios.get('/api/guides')
             .then(res => {
                 const guideCollection = res.data
                 this.setState({
@@ -79,7 +87,7 @@ export default class DataHandler extends Component {
     }
 
     getResorts = () => {
-        return axios.get('/api/resorts')
+        return tokenAxios.get('/api/resorts')
             .then(res => {
                 const resortCollection = res.data
                 this.setState({
@@ -111,29 +119,10 @@ export default class DataHandler extends Component {
         this.getResorts()
     }
 
-    logIn = (props) => {
-        return axios.post('/auth/login', {
-            ...props
-        })
-        .then(res => {
-            console.log(res)
-                const {user, token} = res.data
-                this.setState({
-                    user: {token,...user}
-                })
-                console.log(this.state)
-                return res
-        })
-        .catch(err => {
-            this.setState({errMsg: err.response.data.message})
-            return err
-        })
-    }
 
     render() {
         const value = {
             signUp: this.signUp,
-
             logIn: this.logIn,
             bookService:this.bookService,
             ...this.state
@@ -150,6 +139,6 @@ export default class DataHandler extends Component {
 
 export const withDataHandler = C => props => (
     <Consumer>
-            {containerProps => <C {...containerProps}{...props} />}
+            {value => <C {...value}{...props} />}
     </Consumer>
 )
