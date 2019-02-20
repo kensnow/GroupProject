@@ -8,7 +8,7 @@ function ResortsPage(props) {
 
     return (
 
-        <div className="page-img-resort">
+        <div className="page-img-resort"> 
             <div className="text-box-resort"> {/* add resort info */}
                 <h1 className="heading-primary-resort">
                     <span className="heading-primary-main-resort">Learn more about </span> <br />
@@ -16,15 +16,11 @@ function ResortsPage(props) {
                 </h1>
             </div>
             {/* cards start here */}
-            <div className="row">
+            <div className="row"> 
                 <div className="cards-wrapper">
                     {resortCollection}
                 </div>
             </div>
-
-            
-            
-
 
         </div>
 
@@ -56,7 +52,7 @@ export default withDataHandler(ResortsPage)
 //                             <div className="card__side card__side--front">
 //                                 <div className="card__picture card__picture--4"></div>
 //                                 <h4 className="card__headingResorts">
-//                                     <span className="card__headingResorts--span card__headingResorts--span--1" >SnowBird</span>
+//                                     <span className="card__headingResorts--span          card__headingResorts--span--1" >SnowBird</span>
 //                                 </h4>
 //                                 <div className="card__details">
 //                                     <ul>
