@@ -1,13 +1,9 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
-<<<<<<< HEAD
+import { withRouter } from "react-router-dom"
 import lib from './lib/index.js'
 
-export const {Consumer, Provider} = createContext()
-=======
-import { withRouter } from "react-router-dom"
 export const { Consumer, Provider } = createContext()
->>>>>>> 6a5ad96a2603d8850b7756013273fa13b3e59706
 const tokenAxios = axios.create()
 
 tokenAxios.interceptors.request.use((config) => {
