@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link, Route } from "react-router-dom"
 import { withDataHandler } from "../DataHandler"
+import { Link} from "react-router-dom"
 
 const NavBar = (props) => {
     return (

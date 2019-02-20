@@ -1,6 +1,9 @@
 import React, { Component, createContext } from 'react'
 import axios from 'axios'
 import { withRouter } from "react-router-dom"
+import lib from './lib/index.js'
+
+import { withRouter } from "react-router-dom"
 export const { Consumer, Provider } = createContext()
 const tokenAxios = axios.create()
 
@@ -125,6 +128,21 @@ class DataHandler extends Component {
             })
     }
 
+    getBookings = () => {
+        return tokenAxios.get('/api/bookings')
+            .then(res => {
+                const bookingCollection = res.data
+                this.setState({
+                    bookings:bookingCollection
+                })
+                return res
+            })
+            .catch(err => {
+                this.setState({errMsg: err.response.data.message})
+                return err
+            })
+    }
+
     //use book services for adding guide and/or resort to state
     bookService = (serviceType, serviceId) => {
         const bookingState = { ...this.state.booking }
@@ -134,13 +152,61 @@ class DataHandler extends Component {
 
     //use book now to send date object, guide id and resort id into booking collection.
     //with response object, populate booking object in guide and user collections
-    bookNow = (props) => {
+    bookNow = (reservation)=> {
+        //first, search guideid for date availability
+        const {guide, resort, user, date, groupSize} = reservation
+        const resDate = new Date(date)
+        const prevBookings = guide.bookings.find(prevRes => {
+            //get date from bookings object
+            console.log(prevRes)
+            const prevApt = lib.getObjectData(prevRes,this.state.bookings)
+            console.log(prevApt)
+            console.log(this.state.bookings)
 
+            const prevAptDate = new Date(prevApt.date)
+            console.log(prevAptDate)
+            return lib.getEasyDate(prevAptDate) === lib.getEasyDate(resDate)
+        })
+        console.log(prevBookings)
+        //need to test if this is working once we have some reservations in the system
+
+        if(!prevBookings){
+            //prepare reservation object
+            const resvObj = {
+                guide: guide._id,
+                resort: resort._id,
+                customer: user._id,
+                date: resDate,
+                groupSize: groupSize
+            }
+
+            tokenAxios.post('/api/bookings', {
+                ...resvObj
+            })
+                .then(res => {
+                    console.log (res)
+                    //update guide with booking, update user/customer with booking
+                   return tokenAxios.put(`/api/guides/${guide._id}`,{
+                        bookings: [...guide.bookings, res.data._id]
+                    })
+                    .then(() => res.data._id)
+                })
+                .then(bookingId => {
+                    
+                   return tokenAxios.put(`/api/customers/${user._id}`,{
+                        bookings: [...user.bookings, bookingId]
+                    })
+                })
+        }
+        else {
+            alert("That date is booked!")
+        }
     }
 
     componentDidMount() {
         this.getGuides()
         this.getResorts()
+        this.getBookings()
     }
 
 
@@ -150,6 +216,7 @@ class DataHandler extends Component {
             logIn: this.logIn,
             logout: this.logout,
             bookService: this.bookService,
+            bookNow:this.bookNow,
             updateAvatar: this.updateAvatar,
             ...this.state
 
