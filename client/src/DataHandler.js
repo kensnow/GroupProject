@@ -3,6 +3,13 @@ import axios from 'axios'
 import lib from './lib/index.js'
 
 export const {Consumer, Provider} = createContext()
+const tokenAxios = axios.create()
+
+tokenAxios.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+})
 
 export default class DataHandler extends Component {
     constructor(props) {
@@ -12,6 +19,7 @@ export default class DataHandler extends Component {
                 /////I changed these from fName and lName, WARNING: may cause bugs ;)
                 firstName: "",
                 lastName: "",
+                avatar: "",
                 token: localStorage.getItem("token") || "", 
             },
             booking:{
@@ -67,7 +75,7 @@ export default class DataHandler extends Component {
 
     //do a get request to database guide collection & populate state guides array with guide objects
     getGuides = () => {
-        return axios.get('/api/guides')
+        return tokenAxios.get('/api/guides')
             .then(res => {
                 const guideCollection = res.data
                 this.setState({
@@ -82,7 +90,7 @@ export default class DataHandler extends Component {
     }
 
     getResorts = () => {
-        return axios.get('/api/resorts')
+        return tokenAxios.get('/api/resorts')
             .then(res => {
                 const resortCollection = res.data
                 this.setState({
@@ -97,7 +105,7 @@ export default class DataHandler extends Component {
     }
 
     getBookings = () => {
-        return axios.get('/api/bookings')
+        return tokenAxios.get('/api/bookings')
             .then(res => {
                 const bookingCollection = res.data
                 this.setState({
@@ -129,7 +137,10 @@ export default class DataHandler extends Component {
             console.log(prevRes)
             const prevApt = lib.getObjectData(prevRes,this.state.bookings)
             console.log(prevApt)
+            console.log(this.state.bookings)
+
             const prevAptDate = new Date(prevApt.date)
+            console.log(prevAptDate)
             return lib.getEasyDate(prevAptDate) === lib.getEasyDate(resDate)
         })
         console.log(prevBookings)
@@ -145,20 +156,20 @@ export default class DataHandler extends Component {
                 groupSize: groupSize
             }
 
-            axios.post('/api/bookings', {
+            tokenAxios.post('/api/bookings', {
                 ...resvObj
             })
                 .then(res => {
                     console.log (res)
                     //update guide with booking, update user/customer with booking
-                   return axios.put(`/api/guides/${guide._id}`,{
+                   return tokenAxios.put(`/api/guides/${guide._id}`,{
                         bookings: [...guide.bookings, res.data._id]
                     })
                     .then(() => res.data._id)
                 })
                 .then(bookingId => {
                     
-                   return axios.put(`/api/customers/${user._id}`,{
+                   return tokenAxios.put(`/api/customers/${user._id}`,{
                         bookings: [...user.bookings, bookingId]
                     })
                 })
@@ -174,24 +185,6 @@ export default class DataHandler extends Component {
         this.getBookings()
     }
 
-    logIn = (props) => {
-        return axios.post('/auth/login', {
-            ...props
-        })
-        .then(res => {
-            console.log(res)
-                const {user, token} = res.data
-                this.setState({
-                    user: {token,...user}
-                })
-                console.log(this.state)
-                return res
-        })
-        .catch(err => {
-            this.setState({errMsg: err.response.data.message})
-            return err
-        })
-    }
 
     render() {
         const value = {
@@ -213,6 +206,6 @@ export default class DataHandler extends Component {
 
 export const withDataHandler = C => props => (
     <Consumer>
-            {containerProps => <C {...containerProps}{...props} />}
+            {value => <C {...value}{...props} />}
     </Consumer>
 )

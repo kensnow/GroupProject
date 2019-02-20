@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { withDataHandler } from "../DataHandler"
+import UploadAvatar from "./UploadAvatar"
 function ProfilePage(props) {
     return (
         <div>
@@ -7,9 +8,10 @@ function ProfilePage(props) {
                 <div className="text-box-profile"> {/* add text */}
 
                     <h1 className="heading-primary-profile">
-                        <div className="profile-image"></div>
-                        <span className="heading-primary-main-profile">Ben Turner</span> 
-                        <span className="heading-primary-sub-profile"></span> 
+                        <img className="profile-image" src={`http://localhost:8080/image/${props.user.avatar}`} />
+                        <UploadAvatar />
+                        <span className="heading-primary-main-profile">Ben Turner</span>
+                        <span className="heading-primary-sub-profile"></span>
                     </h1>
                     <div className="row-profile resort">
                         <div className="col-1-of-2">
@@ -35,7 +37,7 @@ function ProfilePage(props) {
                             <h2>Brighton Ski Resort, Big Cotton Wood Canyon</h2>
                         </div>
                     </div>
-                    
+
 
 
                 </div>
@@ -45,4 +47,4 @@ function ProfilePage(props) {
     )
 }
 
-export default ProfilePage
+export default withDataHandler(ProfilePage)

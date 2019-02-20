@@ -58,3 +58,6 @@ function EditProfile(props) {
 }
 
 export default EditProfile
+
+
+//<img src={`http://localhost:8080/image/${this.state.data.filename}`} />
