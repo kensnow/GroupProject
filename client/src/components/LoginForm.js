@@ -16,9 +16,9 @@ const LoginForm = (props) => {
 
                     return(
                         <form onSubmit={handleSubmit} className="login-box">
-                            <input onChange={handleChange} type="email" name="email" />
-                            <input onChange={handleChange} type="password" name="password" />
-                            <button className="btn-white btn btn-animated"> Submit </button>
+                            <input onChange={handleChange} type="email" name="email" placeholder="Email" />
+                            <input onChange={handleChange} type="password" name="password" placeholder="Password"/>
+                            <button className="login-btn"> Login </button>
                         </form>
                         
                     )

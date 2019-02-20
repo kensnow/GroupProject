@@ -34,7 +34,7 @@ function GuideCard(props) {
                             <p className="card__price-only">Only</p>
                             <p className="card__price-value">${dailyRate}</p>
                         </div>
-                        <button onClick={() => props.bookService("guide",_id)} className="btn btn-white">Select {firstName}!</button>
+                        <button onClick={() => props.bookService("guide",_id)} className="resort-btn">Select {firstName}!</button>
                     </div>
                 </div>
             </div>

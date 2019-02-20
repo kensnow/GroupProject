@@ -13,10 +13,11 @@ function LandingPage(props) {
                         <span className="heading-primary-main">Ski with a local.</span> <br />
                         <span className="heading-primary-sub">Ski like a local.</span>
                     </h1>
+                    {props.showLoginForm ? <LoginForm /> : <SignUp />}
+                    <button onClick={props.toggleLoginForm} className="resort-btn"> {props.showLoginForm ? "Sign Up" : "Login"} </button>
                 </div>
             </div>
-            {props.showLoginForm ? <LoginForm /> : <SignUp />}
-            <button onClick={props.toggleLoginForm} className="btn btn-white btn-animated"> {props.showLoginForm ? "Sign Up" : "Login"} </button>
+
             <AboutPage />
         </div>
     )
