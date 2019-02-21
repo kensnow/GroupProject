@@ -1,14 +1,14 @@
 import React from 'react'
-import {withDataHandler} from '../DataHandler'
+import { withDataHandler } from '../DataHandler'
 import ResortCard from './ResortCard'
 
 function ResortsPage(props) {
 
-    const resortCollection = props.resorts.map((resort, i) => { return <ResortCard key={i} {...resort} bookService={props.bookService}/>})
+    const resortCollection = props.resorts.map((resort, i) => { return <ResortCard key={i} {...resort} bookService={props.bookService} /> })
 
     return (
 
-        <div className="page-img-resort"> 
+        <div className="page-img-resort">
             <div className="text-box-resort"> {/* add resort info */}
                 <h1 className="heading-primary-resort">
                     <span className="heading-primary-main-resort">Learn more about </span> <br />
@@ -16,11 +16,15 @@ function ResortsPage(props) {
                 </h1>
             </div>
             {/* cards start here */}
-            <div className="row"> 
-                <div className="cards-wrapper">
+            
+            <div className="row">
+                <div className="cards-wrapper-resort">
                     {resortCollection}
                 </div>
+
             </div>
+
+
 
         </div>
 
@@ -70,8 +74,8 @@ export default withDataHandler(ResortsPage)
 //                                         <p className="card__resort-info">
 
 //                                             Snowbird ski resort is nestled in Little Cottonwood Canyon in the heart of the Wasatch-Cache National Forrest, approximately 29 miles from Salt Lake City International Airport.
-    
-    
+
+
 //                                         </p>
 
 //                                     </div>
