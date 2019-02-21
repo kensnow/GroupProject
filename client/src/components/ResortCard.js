@@ -1,4 +1,5 @@
 import React from 'react'
+import lib from '../lib/index.js'
 
 function ResortCard(props) {
   
@@ -14,9 +15,9 @@ function ResortCard(props) {
                     </h4>
                     <div className="card__details">
                         <ul>
-                            <li>Intermediate to Beyond Expert</li>
+                            <li>{trails} trails</li>
                             <li>{acres.toLocaleString()} skiable acres</li>
-                            <li>{priceRating}</li>
+                            <li>Price: {lib.priceRating(priceRating)}</li>
 
                         </ul>
                     </div>
