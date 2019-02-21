@@ -37,7 +37,7 @@ function BookingPage(props) {
             <div>
                 
                 {resortDat && guideDat ? 
-                    <FormHandler inputs={formInputs} submit={(inputs) => {const res = props.bookNow(inputs).then((res) => {console.log(res)})}} >
+                    <FormHandler inputs={formInputs} submit={(inputs) => {const res = props.bookNow(inputs)}} >
                         {
                             ({inputs, handleChange, handleSubmit}) => {
                                 

@@ -10,11 +10,14 @@ authRouter.post("/signup", (req, res, next) => {
     //Check to see if email is already in the collection
     Customer.findOne({ email: `${req.body.email}` }, (err, existingUser) => {
         if (err) {
+            
             res.status(500)
             return next(err)
         }
         else if (existingUser === null) {
+            
             Guide.findOne({ email: `${req.body.email}` }, (err, existingGuide) => {
+                
                 if (err) {
                     res.status(500)
                     return next(err)
@@ -24,7 +27,12 @@ authRouter.post("/signup", (req, res, next) => {
                     return next(new Error("Sorry, there is an account linked to that email already."))
                 } else {
                     const newUser = req.body.userType === "guide" ? new Guide(req.body) : new Customer(req.body)
+                    //new user does not work if the user is a guide.
+                    //is this because newUser.save only tries to save to Customer collection?
+                    //how does it know which collection to save to?
                     newUser.save((err, user) => {
+                        console.log(user)
+                        console.log(newUser)
                         if (err) return res.status(500).send({ success: false, err })
 
                         //Login and send token
