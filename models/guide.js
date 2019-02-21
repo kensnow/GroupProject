@@ -6,7 +6,7 @@ const guideSchema = new mongoose.Schema({
     email: {
         type: String,
         trim: true,
-        match: [/.+\@.+\..+/, 'Please fill a valid email address'],
+        // match: [/.+\@.+\..+/, 'Please fill a valid email address'],
         unique: true,
         lowercase: true,
         required: true

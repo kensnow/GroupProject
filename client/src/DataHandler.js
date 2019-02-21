@@ -174,17 +174,12 @@ class DataHandler extends Component {
         const resDate = new Date(date)
         const prevBookings = guide.bookings.find(prevRes => {
             //get date from bookings object
-            console.log(prevRes)
             const prevApt = lib.getObjectData(prevRes, this.state.bookings)
-            console.log(prevApt)
-            console.log(this.state.bookings)
-
             const prevAptDate = new Date(prevApt.date)
             console.log(prevAptDate)
+            console.log(prevApt)
             return lib.getEasyDate(prevAptDate) === lib.getEasyDate(resDate)
         })
-        console.log(prevBookings)
-        //need to test if this is working once we have some reservations in the system
 
         if (!prevBookings) {
             //prepare reservation object
@@ -212,10 +207,15 @@ class DataHandler extends Component {
                     return tokenAxios.put(`/api/customers/${user._id}`, {
                         bookings: [...user.bookings, bookingId]
                     })
+                    .then(() => {
+                        this.getGuides()
+                        this.getResorts()
+                        this.getBookings()
+                    })
                 })
         }
         else {
-            alert("That date is booked!")
+            alert("That date is already booked, please choose another date!")
         }
     }
 

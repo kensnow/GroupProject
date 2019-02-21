@@ -1,0 +1,37 @@
+.page-img-booking
+    height: 115vh
+    background-image: linear-gradient(to right bottom, rgba($color-primary, 0.701), rgba($color-primary-dark, 0.701)),url(../img/tetons.jpg)
+    background-size: cover
+    background-position:  right bottom
+    -webikit-clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
+    clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
+    .text-box-booking
+        position: absolute
+        background-color: rgba($color-primary-dark, .2) 
+        top: 48%
+        left: 50%
+        border-radius: 1rem
+        transform: translate(-50%, -50%)
+        text-align: center
+    .heading-primary-booking
+        color: $color-white
+        text-transform: uppercase
+        font-size: 5rem
+        margin: 2rem
+        backface-visibility: hidden //for animations later
+        @include tabletSize
+            font-size: 2.5rem
+        @include phoneSize
+            font-size: 1.5rem
+    .heading-primary-main-booking
+        display: block
+        font-weight: 400
+        letter-spacing: 2rem
+        @include phoneSize
+            letter-spacing: 1rem
+    .heading-primary-sub-booking
+        display: block
+        font-weight: 400
+        letter-spacing: 1.9rem
+        @include phoneSize
+            letter-spacing: 1rem
