@@ -1,6 +1,6 @@
 import React from 'react'
 import FormHandler from "../FormHandler"
-import {withDataHandler} from "../DataHandler"
+import { withDataHandler } from "../DataHandler"
 
 const SignUp = (props) => {
 
@@ -39,7 +39,7 @@ const SignUp = (props) => {
         {
             ///This will be a toggle value in state
             name: "userType",
-            value: "guide"
+            value: "customer"
         }
     ]
 
@@ -49,10 +49,12 @@ const SignUp = (props) => {
 
     return (
         <div className="signupWrapper">
-            <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={(inputs) => props.signUp(inputs)}>
-
+            <FormHandler inputs={textInputs.reduce((sum, x) => {
+                !x.type ? sum[x.name] = x.value : sum[x.name] = ""; return sum
+            }, {})
+            } submit={(inputs) => props.signUp(inputs)}>
                 {
-                    ({ inputs, handleChange, handleSubmit}) => {
+                    ({ inputs, handleChange, handleSubmit }) => {
 
                         const inputBoxes = textInputs.map((x, i) => {
                             return x.name !== "userType" ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
@@ -61,8 +63,10 @@ const SignUp = (props) => {
                         return (
                             <div className="formWrapper">
                                 <div className="userTypeWrapper">
-                                    <button className="guide-button" name="userType" onClick={handleChange} value="guide">I need a guide</button>
-                                    <button className="customer-button" name="userType" onClick={handleChange} value="customer" id="customer">I am a guide</button>
+                                    <button className="guide-button" style={{ border: inputs.userType === "customer" ? "1px dashed gold" : "" }}
+                                        name="userType" onClick={handleChange} value="customer">I need a guide</button>
+                                    <button className="customer-button" style={{ border: inputs.userType === "guide" ? "1px dashed gold" : "" }}
+                                        name="userType" onClick={handleChange} value="guide">I am a guide</button>
 
                                 </div>
                                 <form onSubmit={handleSubmit}>
