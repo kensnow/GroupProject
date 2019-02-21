@@ -9,8 +9,8 @@ function ResortCard(props) {
             <div className="card">
                 <div className="card__side card__side--front">
                     <div className="card__picture card__picture--1"></div>
-                    <h4 className="card__headingResorts">
-                        <span className="card__headingResorts--span card__headingResorts--span--1" >{name}</span>
+                    <h4 className="card__heading">
+                        <span className="card__heading--span card__heading--span--1" >{name}</span>
                     </h4>
                     <div className="card__details">
                         <ul>
@@ -24,8 +24,8 @@ function ResortCard(props) {
 
                 <div className="card__side card__side--back card__side--back--1">
                     <div className="card-cta">
-                        <div className="card__resort-info">
-                            <p className="card__resort-info">
+                        <div className="card__info">
+                            <p className="card__info">
                                 {description}
                             </p>
 
