@@ -40,9 +40,6 @@ class DataHandler extends Component {
                     token
                 }, () => {
                     this.props.history.push("/myprofile")
-                    this.getGuides()
-                    this.getResorts()
-                    this.getBookings()
                     localStorage.setItem("token", token)
                     localStorage.setItem("user", JSON.stringify(user))
                     })
@@ -57,7 +54,8 @@ class DataHandler extends Component {
 
     logIn = (props) => {
         return axios.post('/auth/login', {
-            ...props
+            ...props,
+            email: props.email.toLowerCase()
         })
             .then(res => {
                 const { user, token } = res.data
@@ -65,9 +63,6 @@ class DataHandler extends Component {
                     user,
                     token
                 })
-                this.getGuides()
-                this.getResorts()
-                this.getBookings()
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
 
@@ -79,12 +74,19 @@ class DataHandler extends Component {
     }
 
     logout = () => {
-        console.log("im here")
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         this.setState({
             user: {},
-            token: ""
+            token: "",
+            booking: {
+                guide: "",
+                resort: "",
+            },
+            errMsg: "",
+            showLoginForm: true,
+            resorts: [],
+            guides: []
         })
         this.props.history.push("/")
     }
@@ -96,7 +98,7 @@ class DataHandler extends Component {
                 avatar: filename
             }
         }),
-            localStorage.setItem("user1", JSON.stringify(this.state.user))
+            () => localStorage.setItem("user", JSON.stringify(this.state.user))
         )
 
     }
@@ -218,8 +220,6 @@ class DataHandler extends Component {
     }
 
     componentDidMount() {
-        this.getGuides()
-        this.getResorts()
         this.getBookings()
     }
 
@@ -233,6 +233,8 @@ class DataHandler extends Component {
             bookNow: this.bookNow,
             updateAvatar: this.updateAvatar,
             toggleLoginForm: this.toggleLoginForm,
+            getGuides: this.getGuides,
+            getResorts: this.getResorts,
             ...this.state
 
         }
