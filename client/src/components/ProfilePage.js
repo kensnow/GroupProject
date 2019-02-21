@@ -8,7 +8,7 @@ function ProfilePage(props) {
                 <div className="text-box-profile"> {/* add text */}
 
                     <h1 className="heading-primary-profile">
-                        <img className="profile-image" src={`http://localhost:8080/image/${props.user.avatar}`} />
+                        <img className="profile-image" alt="Avatar" src={`http://localhost:8080/image/${props.user.avatar}`} />
                         <UploadAvatar />
                         <span className="heading-primary-main-profile">Ben Turner</span>
                         <span className="heading-primary-sub-profile"></span>
