@@ -29,7 +29,9 @@ function GuideCard(props) {
 
                 <div className="card__side card__side--back card__side--back--1">
                     <div className="card-cta">
-                    <img style={{width: "150px"}} src={`http://localhost:8080/image/${avatar}`} />
+
+                    <img style={{height: "200px"}} src={`http://localhost:8080/image/${avatar}`} />
+
                         <div className="card__price-box">
                             <p className="card__price-only">Only</p>
                             <p className="card__price-value">${dailyRate}</p>
