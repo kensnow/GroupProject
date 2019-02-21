@@ -27,9 +27,7 @@ authRouter.post("/signup", (req, res, next) => {
                     return next(new Error("Sorry, there is an account linked to that email already."))
                 } else {
                     const newUser = req.body.userType === "guide" ? new Guide(req.body) : new Customer(req.body)
-                    //new user does not work if the user is a guide.
-                    //is this because newUser.save only tries to save to Customer collection?
-                    //how does it know which collection to save to?
+
                     newUser.save((err, user) => {
                         console.log(user)
                         console.log(newUser)
