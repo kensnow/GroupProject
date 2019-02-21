@@ -3,6 +3,8 @@
 export default (() => {
 
     const getObjectData = (id, collectionArray) => {
+        console.log(id)
+        console.log(collectionArray)
         if(!id || !collectionArray) return undefined
         const foundElement = collectionArray.find(item => item._id === id )
         return foundElement

@@ -61,7 +61,6 @@ function BookingPage(props) {
             </div>
             <div>
 
-
             </div>
 
 

@@ -61,8 +61,8 @@ const SignUp = (props) => {
                         return (
                             <div className="formWrapper">
                                 <div className="userTypeWrapper">
-                                    <button className="guide-button" name="userType" onClick={handleChange} value="guide">I need a guide</button>
-                                    <button className="customer-button" name="userType" onClick={handleChange} value="customer" id="customer">I am a guide</button>
+                                    <button className="customer-button" name="userType" onClick={handleChange} value="customer">I need a guide</button>
+                                    <button className="guide-button" name="userType" onClick={handleChange} value="guide" id="customer">I am a guide</button>
 
                                 </div>
                                 <form onSubmit={handleSubmit}>
