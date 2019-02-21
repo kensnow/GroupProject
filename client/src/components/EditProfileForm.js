@@ -1,11 +1,18 @@
 import React from 'react'
 import FormHandler from "../FormHandler"
-import {withDataHandler} from "../DataHandler"
+import { withDataHandler } from "../DataHandler"
 
 const EditProfileForm = (props) => {
 
     const textInputs = [
 
+        {
+            name: "nickName",
+            type: "text",
+            guideOnly: true,
+            placeholder: "Display Name",
+            className: "textBox",
+        },
         {
             name: "firstName",
             type: "text",
@@ -25,22 +32,24 @@ const EditProfileForm = (props) => {
             className: "textBox"
         },
         {
-            name: "changePassword",
-            type: "button",
-            value: "changePassword",
-            children: "Change Password",
+            name: "phoneNumber",
+            type: "text",
+            placeholder: "Phone Number",
             className: "textBox"
         },
         {
-            name: "confirmPassword",
-            type: "password",
-            placeholder: "Confirm Password",
-            className: "textBox"
+            name: "aboutMe",
+            type: "text",
+            guideOnly: true,
+            placeholder: "Bio",
+            className: "largeTextBox",
         },
         {
-            ///This will be a toggle value in state
-            name: "userType",
-            value: "guide"
+            name: "dailyRate",
+            type: "number",
+            guideOnly: true,
+            placeholder: "Daily Rate",
+            className: "textBox",
         }
     ]
 
@@ -50,13 +59,16 @@ const EditProfileForm = (props) => {
 
     return (
         <div className="signupWrapper">
-            <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={(inputs) => props.signUp(inputs)}>
+            <FormHandler inputs={textInputs.reduce((sum, x) => {
+                !x.type ? sum[x.name] = x.value : sum[x.name] = ""; return sum
+            }, {})
+            } submit={(inputs) => props.signUp(inputs)}>
 
                 {
-                    ({ inputs, handleChange, handleSubmit}) => {
+                    ({ inputs, handleChange, handleSubmit }) => {
 
                         const inputBoxes = textInputs.map((x, i) => {
-                            return x.name !== "userType" ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
+                            return !x.type ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
                         }
                         )
                         return (
