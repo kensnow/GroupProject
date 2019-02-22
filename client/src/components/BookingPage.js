@@ -10,7 +10,6 @@ import FormHandler from '../FormHandler'
 function BookingPage(props) {
     const { user, guides, resorts, booking } = props
 
-    console.log(props)
     //build guide & resort cardlett
     const guideDat = lib.getObjectData(booking.guide, guides)
     const resortDat = lib.getObjectData(booking.resort, resorts)
