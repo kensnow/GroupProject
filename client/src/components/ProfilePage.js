@@ -1,9 +1,27 @@
 import React from 'react'
 import { withDataHandler } from "../DataHandler"
 import UploadAvatar from "./UploadAvatar"
+import lib from '../lib/index.js'
+
+
 function ProfilePage(props) {
     console.log(props)
-    const bookingsCollection = props.user.bookings.map(resv => {console.log(resv)})
+
+    const bookingsCollection = props.user.bookings.map(resv => {
+        const bookingObj = lib.getObjectData(resv, props.bookings)
+        if(bookingObj){
+            const guideObj = lib.getObjectData(bookingObj.guide, props.guides)
+            const resortObj = lib.getObjectData(bookingObj.resort, props.resorts)
+            if(guideObj && resortObj){
+                const date = new Date(bookingObj.date)
+                return <div className="booking-card"><img style={{height: "150px"}} src={`http://localhost:8080/image/${guideObj.avatar}`} /><div className="booking-card-details"><h5>{lib.getEasyDate(date)}:</h5><h4>with {guideObj.firstName + " " + guideObj.lastName}</h4> <h5>at {resortObj.name}</h5></div></div>
+            }
+
+        }
+        
+        // const guideObj = lib.getObjectData(bookingObj, props.guides)
+    })
+
 
     return (
         <div>
@@ -21,7 +39,7 @@ function ProfilePage(props) {
                             <h2>Upcoming Booking(s):</h2>
                         </div>
                         <div className="col-1-of-2">
-                            <h2>3/9/2019 with Jason Brown</h2>
+                            {bookingsCollection}
                         </div>
                     </div>
                     <div className="row-profile resort">

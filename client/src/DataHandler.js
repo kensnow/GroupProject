@@ -158,9 +158,13 @@ class DataHandler extends Component {
                 return err
             })
     }
+    
 
     componentDidMount = () => {
         this.getBookings()
+        this.getGuides()
+        this.getResorts()
+
     }
     //use book services for adding guide and/or resort to state
     bookService = async (serviceType, serviceId) => {
