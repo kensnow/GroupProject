@@ -22,8 +22,7 @@
             border-radius: 4px
             background: rgba(255,255,255,.2)
             grid-template-columns: 40% 50%
-            border-bottom: 2px solid $color-white
-            border-top: 2px solid $color-white
+            box-shadow: 0 .35rem .5rem rgba($color-black, 0.4)
             margin: .5rem 2rem
             padding: 1rem
             line-height: 15px
@@ -39,16 +38,18 @@
         backface-visibility: hidden //for animations later
         .profile-image
             height: 150px
-            
-
-        @include tabletSize
-            font-size: 2.5rem
+            @include phoneSize
+                height: 75px
         @include phoneSize
-            font-size: 2.5rem
+            font-size: 2rem
+        @include tabletSize
+            font-size: 2rem
     .heading-primary-main-profile
         display: block
         font-weight: 400
         letter-spacing: 2rem
+        @include phoneSize
+            letter-spacing: 1rem
     .heading-primary-sub-profile
         display: block
         height: 5rem

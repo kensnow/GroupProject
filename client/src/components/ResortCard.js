@@ -7,7 +7,7 @@ function ResortCard(props) {
     //map through guides and create a guide cardlett for each
     return (
         
-            <div className="col-1-of-3">
+            <div className="col-1-of-2"> 
                 <div className="cardResort">
                     <div className="cardResort__sideResort cardResort__sideResort--frontResort">
                         <div className="cardResort__pictureResort cardResort__pictureResort--4"></div>
