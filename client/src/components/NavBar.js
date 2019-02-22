@@ -9,21 +9,22 @@ const NavBar = (props) => {
 
         <nav id='main-nav'>
 
-            <div className="logo-box">
-                <Link to="/">
-                    <img alt="Logo" className='logo' src={require('../assets/img/logo_transparent.png')} />
-                </Link>
-
-            </div>
+           
             <ul>
                 {props.token ?
                     <li>
                         <a onClick={props.logout}>Logout</a>
                     </li> : null}
                 <li> <Link to="/myprofile"> Profile</Link> </li>
-                    <li> <Link to="/booking"> Booking </Link> </li> 
-                    <li> <Link to="/guides"> Guides</Link> </li>
-                    <li> <Link to="/resorts"> Resorts</Link> </li>
+                <li> <Link to="/booking"> Booking </Link> </li>
+                <li> <Link to="/guides"> Guides</Link> </li>
+                <li> <Link to="/resorts"> Resorts</Link> </li>
+                <div className="logo-box">
+                    <li> <Link to="/">
+                        <img alt="Logo" className='logo' src={require('../assets/img/logo_transparent.png')} />
+                    </Link>
+                    </li>
+                </div>
 
 
 
@@ -34,7 +35,7 @@ const NavBar = (props) => {
 
         </nav>
 
-    )
-}
-
-export default withDataHandler(NavBar)
+            )
+        }
+        
+        export default withDataHandler(NavBar)

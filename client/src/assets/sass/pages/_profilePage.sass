@@ -7,6 +7,7 @@
     clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
     .text-box-profile
         position: absolute
+        overflow-y: scroll
         width: 65vw
         height: 75vh
         background-color: rgba($color-primary-dark, .2) 
@@ -15,6 +16,20 @@
         border-radius: 1rem
         transform: translate(-50%, -10%)
         text-align: center
+
+        .booking-card
+            display: grid
+            border-radius: 4px
+            background: rgba(255,255,255,.2)
+            grid-template-columns: 40% 50%
+            box-shadow: 0 .35rem .5rem rgba($color-black, 0.4)
+            margin: .5rem 2rem
+            padding: 1rem
+            line-height: 15px
+
+            .subtle-text
+                color: darkgrey
+
     .heading-primary-profile
         color: $color-white
         text-transform: uppercase
@@ -23,16 +38,18 @@
         backface-visibility: hidden //for animations later
         .profile-image
             height: 150px
-            
-
-        @include tabletSize
-            font-size: 2.5rem
+            @include phoneSize
+                height: 75px
         @include phoneSize
-            font-size: 2.5rem
+            font-size: 2rem
+        @include tabletSize
+            font-size: 2rem
     .heading-primary-main-profile
         display: block
         font-weight: 400
         letter-spacing: 2rem
+        @include phoneSize
+            letter-spacing: 1rem
     .heading-primary-sub-profile
         display: block
         height: 5rem

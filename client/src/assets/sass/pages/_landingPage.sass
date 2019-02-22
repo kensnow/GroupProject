@@ -6,14 +6,24 @@
     background-position: top
     -webikit-clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
     clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
+    @include phoneSize
+        height: 120vh
     .text-box
         position: absolute
         background-color: rgba($color-primary-dark, .2) 
-        top: 65%
+        top: 63%
         left: 50%
         border-radius: 1rem
         transform: translate(-50%, -50%)
         text-align: center
+        @include tabletSize
+            top: 50%
+        .login-btn
+            @include phoneSize
+                margin: auto
+            @include tabletSize
+                margin: auto
+        
     .heading-primary
         color: $color-white
         text-transform: uppercase
@@ -30,12 +40,15 @@
         display: block
         font-weight: 400
         letter-spacing: 2rem
+        animation: moveInRight 1s ease-out 1s backwards
+        
         @include phoneSize
             letter-spacing: 1rem
     .heading-primary-sub
         display: block
         font-weight: 400
         letter-spacing: 1.9rem
+        animation: moveInLeft 1s ease-out 1s backwards
         @include phoneSize
             letter-spacing: 1rem
     .btn
@@ -47,7 +60,7 @@
             font-size: 1.6rem
             font-weight: 400
             z-index: 0
-            
+    
 
 
 
