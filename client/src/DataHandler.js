@@ -24,7 +24,9 @@ class DataHandler extends Component {
             errMsg: "",
             showLoginForm: true,
             resorts: [],
-            guides: []
+            guides: [],
+            bookings:[],
+            notification:""
         }
     }
 
@@ -40,9 +42,6 @@ class DataHandler extends Component {
                     token
                 }, () => {
                     this.props.history.push("/myprofile")
-                    this.getGuides()
-                    this.getResorts()
-                    this.getBookings()
                     localStorage.setItem("token", token)
                     localStorage.setItem("user", JSON.stringify(user))
                     })
@@ -57,7 +56,8 @@ class DataHandler extends Component {
 
     logIn = (props) => {
         return axios.post('/auth/login', {
-            ...props
+            ...props,
+            email: props.email.toLowerCase()
         })
             .then(res => {
                 const { user, token } = res.data
@@ -65,9 +65,6 @@ class DataHandler extends Component {
                     user,
                     token
                 })
-                this.getGuides()
-                this.getResorts()
-                this.getBookings()
                 localStorage.setItem("token", token)
                 localStorage.setItem("user", JSON.stringify(user))
 
@@ -79,12 +76,19 @@ class DataHandler extends Component {
     }
 
     logout = () => {
-        console.log("im here")
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         this.setState({
             user: {},
-            token: ""
+            token: "",
+            booking: {
+                guide: "",
+                resort: "",
+            },
+            errMsg: "",
+            showLoginForm: true,
+            resorts: [],
+            guides: []
         })
         this.props.history.push("/")
     }
@@ -96,7 +100,7 @@ class DataHandler extends Component {
                 avatar: filename
             }
         }),
-            localStorage.setItem("user1", JSON.stringify(this.state.user))
+            () => localStorage.setItem("user", JSON.stringify(this.state.user))
         )
 
     }
@@ -155,6 +159,9 @@ class DataHandler extends Component {
             })
     }
 
+    componentDidMount = () => {
+        this.getBookings()
+    }
     //use book services for adding guide and/or resort to state
     bookService = async (serviceType, serviceId) => {
         const bookingState = { ...this.state.booking }
@@ -173,6 +180,7 @@ class DataHandler extends Component {
         const prevBookings = guide.bookings.find(prevRes => {
             //get date from bookings object
             const prevApt = lib.getObjectData(prevRes, this.state.bookings)
+        
             const prevAptDate = new Date(prevApt.date)
             console.log(prevAptDate)
             console.log(prevApt)
@@ -193,34 +201,46 @@ class DataHandler extends Component {
                 ...resvObj
             })
                 .then(res => {
-                    console.log(res)
+
                     //update guide with booking, update user/customer with booking
                     return tokenAxios.put(`/api/guides/${guide._id}`, {
-                        bookings: [...guide.bookings, res.data._id]
+                        bookings: [ ...guide.bookings, res.data._id]
                     })
-                        .then(() => res.data._id)
+                    .then(() => res.data._id)
+
                 })
                 .then(bookingId => {
-
+ 
                     return tokenAxios.put(`/api/customers/${user._id}`, {
                         bookings: [...user.bookings, bookingId]
                     })
-                    .then(() => {
-                        this.getGuides()
-                        this.getResorts()
-                        this.getBookings()
+                    .then(() => bookingId)
+                })
+                
+                .then((bookingId) => {
+                    this.setState(ps => ({
+                        user: {
+                            ...ps.user,
+                            bookings: [...ps.user.bookings, bookingId]
+                    }}))
+                    this.getGuides()
+                    this.getBookings()
+                })
+                .then(() => {
+                    this.setState({
+                        notification:`Booking Confirmed!`,
+                        booking: {
+                            guide:"",
+                            resort:""
+                        }
                     })
                 })
         }
         else {
-            alert("That date is already booked, please choose another date!")
+            this.setState({
+                notification: "That date is already booked, please choose another date!"
+            })
         }
-    }
-
-    componentDidMount() {
-        this.getGuides()
-        this.getResorts()
-        this.getBookings()
     }
 
 
@@ -233,6 +253,9 @@ class DataHandler extends Component {
             bookNow: this.bookNow,
             updateAvatar: this.updateAvatar,
             toggleLoginForm: this.toggleLoginForm,
+            getGuides: this.getGuides,
+            getResorts: this.getResorts,
+            getBookings: this.getBookings, 
             ...this.state
 
         }
