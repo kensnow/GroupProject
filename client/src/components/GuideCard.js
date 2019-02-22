@@ -21,7 +21,7 @@ function GuideCard(props) {
                             <li>{abilityRange}</li>
                             {/* TODO: Add helper function to render ability range visual */}
                             <li>{resortMap}</li>
-                            <li>{aboutMe}</li>
+                            <li>${dailyRate}</li>
 
                         </ul>
                     </div>
@@ -34,7 +34,7 @@ function GuideCard(props) {
 
                         <div className="card__price-box">
                             <p className="card__price-only">Only</p>
-                            <p className="card__price-value">${dailyRate}</p>
+                            <p className="card__price-value">{aboutMe}</p>
                         </div>
                         <button onClick={() => props.bookService("guide", _id)} className="resort-btn">Select {firstName}!</button>
                     </div>

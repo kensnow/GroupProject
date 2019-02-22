@@ -67,6 +67,7 @@ authRouter.post("/login", async (req, res, next) => {
 
 })
 
+
 const loginUserInfo = (user) => {
     return {
         user: user.withoutSensitiveInfo(),

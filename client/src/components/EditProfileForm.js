@@ -53,18 +53,19 @@ const EditProfileForm = (props) => {
         },
         {
             name: "abilityLevel",
-            value: []
+            value: [0]
         }
     ]
-
+///////////// props.editProfile !!!!!!!!!!!vvvvvvvvvvvvvvvvvvvvv
     return (
         <div className="signupWrapper">
             <FormHandler inputs={textInputs.reduce((sum, x) => {
                 !x.type ? sum[x.name] = x.value : sum[x.name] = props.user[x.name] || ""; return sum
             }, {})
-            } submit={(inputs) => props.signUp(inputs)}>
+            } submit={(inputs) => props.editProfile(inputs)}>
+            
                 {
-                    ({ inputs, handleChange, handleSubmit, handleAbility }) => {
+                    ({ inputs, handleChange, handleSubmit, handleAbility}) => {
 
                         const inputBoxes = textInputs.map((x, i) => {
                             if (props.user.userType === "guide") {
@@ -83,10 +84,10 @@ const EditProfileForm = (props) => {
                                     {inputBoxes}
                                     <button>Submit</button>
                                     <div>
-                                        <button value={1} onClick={handleAbility}>Beginner</button>
-                                        <button value={2} onClick={handleAbility}>Intermediate</button>
-                                        <button value={3} onClick={handleAbility}>Advanced</button>
-                                        <button value={4} onClick={handleAbility}>Expert</button>
+                                        <button type="button" value={1} onClick={handleAbility}>Beginner</button>
+                                        <button type="button" value={2} onClick={handleAbility}>Intermediate</button>
+                                        <button type="button" value={3} onClick={handleAbility}>Advanced</button>
+                                        <button type="button" value={4} onClick={handleAbility}>Expert</button>
                                     </div>
                                 </form>
                             </div>

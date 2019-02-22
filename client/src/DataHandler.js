@@ -30,6 +30,25 @@ class DataHandler extends Component {
         }
     }
 
+    editProfile = (inputs) => {
+        console.log("I'm here")
+        return tokenAxios.post(`/api/edit/`, {
+            ...inputs
+        })
+            .then(res => {
+                this.setState({
+                    guides: []
+                }, () => {
+                    this.props.history.push("/myprofile")
+                    })
+
+            })
+            .catch(err => {
+                this.setState({ errMsg: err.response.data.message })
+                return err
+            })
+
+    }
 
     signUp = (props) => {
         return axios.post(`/auth/signup/`, {
@@ -260,6 +279,7 @@ class DataHandler extends Component {
             getGuides: this.getGuides,
             getResorts: this.getResorts,
             getBookings: this.getBookings, 
+            editProfile: this.editProfile, 
             ...this.state
 
         }

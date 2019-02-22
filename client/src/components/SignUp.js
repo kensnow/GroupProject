@@ -64,9 +64,9 @@ const SignUp = (props) => {
                             <div className="wrapper">
                                 <div className="userTypeSelector">
 
-                                    <button className="signUp-btn guide-button" name="userType" onClick={handleChange} value="guide">I need a guide</button>
+                                    <button className="signUp-btn guide-button" name="userType" onClick={handleChange} value="customer">I need a guide</button>
 
-                                    <button className="signUp-btn customer-button" name="userType" onClick={handleChange} value="customer" id="customer">I am a guide</button>
+                                    <button className="signUp-btn customer-button" name="userType" onClick={handleChange} value="guide">I am a guide</button>
 
                                 </div>
                                 <form className="signup-form" onSubmit={handleSubmit}>
