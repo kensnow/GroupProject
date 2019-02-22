@@ -1,12 +1,11 @@
 import React from 'react'
 import { withDataHandler } from "../DataHandler"
 import UploadAvatar from "./UploadAvatar"
+import EditProfileForm from "./EditProfileForm"
 import lib from '../lib/index.js'
 
 
 function ProfilePage(props) {
-    console.log(props)
-
     const bookingsCollection = props.user.bookings.map(resv => {
         const bookingObj = lib.getObjectData(resv, props.bookings)
         if (bookingObj) {
@@ -46,6 +45,7 @@ function ProfilePage(props) {
                 </div>
 
             </div>
+            <EditProfileForm/>
         </div>
     )
 }

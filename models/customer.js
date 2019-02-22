@@ -16,34 +16,30 @@ const customerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    firstName:String,
-    lastName:String,
-    abilityLevel: {
-        type: Number,
-        default: 0,
-        enum: [0, 1, 2, 3]
-    },
+    firstName: String,
+    lastName: String,
+    abilityLevel: [Number],
     phoneNumber: String,
     avatar: {
         type: String,
         default: "nouser.jpg"
     },
-    userType:{
-        type:String,
-        enum:["customer","guide"]
+    userType: {
+        type: String,
+        enum: ["customer", "guide"]
     },
     bookings: [{
-        type:objectId,
-        ref:"Bookings"
+        type: objectId,
+        ref: "Bookings"
     }],
-    favorites:{
-        resort:[{
-            type:objectId,
-            ref:'Resort'
+    favorites: {
+        resort: [{
+            type: objectId,
+            ref: 'Resort'
         }],
-        guide:[{
-            type:objectId,
-            ref:'Guide'
+        guide: [{
+            type: objectId,
+            ref: 'Guide'
         }]
     }
 })
@@ -51,18 +47,16 @@ const customerSchema = new mongoose.Schema({
 customerSchema.pre("save", function (next) {
     const user = this
     if (!user.isModified("password")) return next()
-bcrypt.hash(user.password, 10, (err, hash) => {
-    if (err) return next(err)
-    user.password = hash
-    next()
-})
+    bcrypt.hash(user.password, 10, (err, hash) => {
+        if (err) return next(err)
+        user.password = hash
+        next()
+    })
 })
 
 customerSchema.methods.withoutSensitiveInfo = function () {
     const user = this.toObject()
     delete user.password
-    delete user.email
-    delete user.lastname
     return user
 }
 
