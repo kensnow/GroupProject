@@ -186,8 +186,7 @@ class DataHandler extends Component {
             const prevApt = lib.getObjectData(prevRes, this.state.bookings)
         
             const prevAptDate = new Date(prevApt.date)
-            console.log(prevAptDate)
-            console.log(prevApt)
+
             return lib.getEasyDate(prevAptDate) === lib.getEasyDate(resDate)
         })
 

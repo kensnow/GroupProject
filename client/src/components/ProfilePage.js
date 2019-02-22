@@ -5,7 +5,6 @@ import lib from '../lib/index.js'
 
 
 function ProfilePage(props) {
-    console.log(props)
 
     const bookingsCollection = props.user.bookings.map(resv => {
         const bookingObj = lib.getObjectData(resv, props.bookings)
