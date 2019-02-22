@@ -2,4 +2,7 @@
     
     .text-Box1
         margin: auto
-        margin-left: 1rem
+        margin-right: 1rem
+        @include tabletSize
+            &:not(:last-child)
+                margin-right: 1rem

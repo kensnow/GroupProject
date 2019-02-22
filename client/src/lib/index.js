@@ -3,6 +3,8 @@
 export default (() => {
 
     const getObjectData = (id, collectionArray) => {
+        console.log(id)
+        console.log(collectionArray)
         if(!id || !collectionArray) return undefined
         const foundElement = collectionArray.find(item => item._id === id )
         return foundElement
@@ -18,10 +20,18 @@ export default (() => {
         return(`${month}-${day}-${year}`)
     }
 
+    const priceRating = (number) => {
+        let priceIcon = []
+        for (let i = 0; i < number; i++){
+            priceIcon.push("$")
+        }
+        return priceIcon.join("")
+    }
 
     return{
         //enter ref methods here
         getObjectData,
-        getEasyDate
+        getEasyDate,
+        priceRating
     }
 })()

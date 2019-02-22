@@ -7,7 +7,7 @@ import BookingPage from './BookingPage'
 import SignUp from './SignUp'
 import EditProfile from './EditProfileForm';
 import ProfilePage from './ProfilePage';
-// import ProtectedRoute from "./ProtectedRoute"
+import ProtectedRoute from "./ProtectedRoute"
 
 const MainView = (props) => {
 

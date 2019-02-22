@@ -5,9 +5,12 @@
     background-position: bottom
     -webikit-clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
     clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
-    .text-box-resort
+    @include phoneSize
+        height: 250vh
+    
+    .text-box-resort 
         position: absolute
-        width: 45vw
+        width: 65vw
         height: 40vh
         background-color: rgba($color-primary-dark, .2) 
         top: 50%
@@ -19,8 +22,9 @@
             height: 35vh
             top: 50%
         @include tabletSize
-            height: 20vh
+            height: 30vh
             top: 40%
+    
     .heading-primary-resort
         color: $color-white
         text-transform: uppercase
@@ -31,10 +35,12 @@
             font-size: 2.5rem
         @include phoneSize
             font-size: 1.5rem
+    
     .heading-primary-main-resort
         display: block
         font-weight: 400
         letter-spacing: 2rem
+    
     .heading-primary-sub-resort
         display: block
         font-weight: 400
@@ -48,6 +54,7 @@
     display: inline-block
     color: white
     letter-spacing: .2rem
+
 //CARD STYLING
 
 .cards-wrapper-resort
@@ -174,7 +181,7 @@
         width: 55%
         @include phoneSize
             font-size: 1rem
-            transform: translate(8rem, -5rem)
+            transform: translate(-10rem, -5rem)
         @include tabletSize
             font-size: 1.8rem
             

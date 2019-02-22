@@ -1,4 +1,5 @@
 import React from 'react'
+import lib from '../lib/index.js'
 
 function ResortCard(props) {
 

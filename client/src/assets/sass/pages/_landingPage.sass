@@ -6,6 +6,8 @@
     background-position: top
     -webikit-clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
     clip-path: polygon (0% 0%, 100% 0%, 100% 100vh, 0% 100vh)
+    @include phoneSize
+        height: 120vh
     .text-box
         position: absolute
         background-color: rgba($color-primary-dark, .2) 
@@ -14,7 +16,8 @@
         border-radius: 1rem
         transform: translate(-50%, -50%)
         text-align: center
-
+        @include tabletSize
+            top: 50%
         .login-btn
             @include phoneSize
                 margin: auto

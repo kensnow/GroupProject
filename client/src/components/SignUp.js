@@ -68,11 +68,11 @@ const SignUp = (props) => {
 
                                 </div>
                                 <form className="signup-form" onSubmit={handleSubmit}>
-                                    <div className="input-box">
+                                    <div className="input-box"> 
                                         {inputBoxes}
                                     </div>
 
-                                    <button className="signUp-btn">Submit</button>
+                                    <button className="signUpSubmit-btn">Submit</button>
                                 </form>
                             </div>
                         )
