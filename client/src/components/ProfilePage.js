@@ -14,7 +14,7 @@ function ProfilePage(props) {
             const resortObj = lib.getObjectData(bookingObj.resort, props.resorts)
             if(guideObj && resortObj){
                 const date = new Date(bookingObj.date)
-                return <div className="booking-card"><img style={{height: "150px"}} src={`http://localhost:8080/image/${guideObj.avatar}`} /><div className="booking-card-details"><h5>{lib.getEasyDate(date)}:</h5><h4>with {guideObj.firstName + " " + guideObj.lastName}</h4> <h5>at {resortObj.name}</h5></div></div>
+                return <div className="booking-card"><img style={{height: "10rem"}} src={`http://localhost:8080/image/${guideObj.avatar}`} /><div className="booking-card-details"><h5>{lib.getEasyDate(date)}:</h5><h4><span className="subtle-text">with</span> {guideObj.firstName + " " + guideObj.lastName}</h4> <h5><span className="subtle-text">at</span> {resortObj.name}</h5></div></div>
             }
 
         }
@@ -42,24 +42,6 @@ function ProfilePage(props) {
                             {bookingsCollection}
                         </div>
                     </div>
-                    <div className="row-profile resort">
-                        <div className="col-1-of-2">
-                            <h2>Recent Guide:</h2>
-                        </div>
-                        <div className="col-1-of-2">
-                            <h2>Grant Wilhelm</h2>
-                        </div>
-                    </div>
-                    <div className="row-profile resort">
-                        <div className="col-1-of-2">
-                            <h2>Favorite Resort:</h2>
-                        </div>
-                        <div className="col-1-of-2">
-                            <h2>Brighton Ski Resort, Big Cotton Wood Canyon</h2>
-                        </div>
-                    </div>
-
-
 
                 </div>
 
