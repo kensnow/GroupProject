@@ -10,31 +10,31 @@ const SignUp = (props) => {
             name: "firstName",
             type: "text",
             placeholder: "First Name",
-            className: "textBox",
+            className: "text-Box1",
         },
         {
             name: "lastName",
             type: "text",
             placeholder: "Last Name",
-            className: "textBox"
+            className: "text-Box1"
         },
         {
             name: "email",
             type: "text",
             placeholder: "E-Mail",
-            className: "textBox"
+            className: "text-Box1"
         },
         {
             name: "password",
             type: "password",
             placeholder: "Password",
-            className: "textBox"
+            className: "text-Box1"
         },
         {
             name: "confirmPassword",
             type: "password",
             placeholder: "Confirm Password",
-            className: "textBox"
+            className: "text-Box1"
         },
         {
             ///This will be a toggle value in state
@@ -48,7 +48,7 @@ const SignUp = (props) => {
 
 
     return (
-        <div className="signupWrapper">
+        <div className="signup-wrapper">
             <FormHandler inputs={textInputs.reduce((sum, x) => {
                 !x.type ? sum[x.name] = x.value : sum[x.name] = ""; return sum
             }, {})
@@ -61,17 +61,20 @@ const SignUp = (props) => {
                         }
                         )
                         return (
-                            <div className="formWrapper">
-                                <div className="userTypeWrapper">
-                                    <button className="guide-button" style={{ border: inputs.userType === "customer" ? "1px dashed gold" : "" }}
-                                        name="userType" onClick={handleChange} value="customer">I need a guide</button>
-                                    <button className="customer-button" style={{ border: inputs.userType === "guide" ? "1px dashed gold" : "" }}
-                                        name="userType" onClick={handleChange} value="guide">I am a guide</button>
+                            <div className="wrapper">
+                                <div className="userTypeSelector">
+
+                                    <button className="signUp-btn guide-button" name="userType" onClick={handleChange} value="guide">I need a guide</button>
+
+                                    <button className="signUp-btn customer-button" name="userType" onClick={handleChange} value="customer" id="customer">I am a guide</button>
 
                                 </div>
-                                <form onSubmit={handleSubmit}>
-                                    {inputBoxes}
-                                    <button>Submit</button>
+                                <form className="signup-form" onSubmit={handleSubmit}>
+                                    <div className="input-box"> 
+                                        {inputBoxes}
+                                    </div>
+
+                                    <button className="signUpSubmit-btn">Submit</button>
                                 </form>
                             </div>
                         )

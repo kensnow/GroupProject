@@ -9,16 +9,16 @@ function ProfilePage(props) {
 
     const bookingsCollection = props.user.bookings.map(resv => {
         const bookingObj = lib.getObjectData(resv, props.bookings)
-        if(bookingObj){
+        if (bookingObj) {
             const guideObj = lib.getObjectData(bookingObj.guide, props.guides)
             const resortObj = lib.getObjectData(bookingObj.resort, props.resorts)
-            if(guideObj && resortObj){
+            if (guideObj && resortObj) {
                 const date = new Date(bookingObj.date)
-                return <div className="booking-card"><img style={{height: "10rem"}} src={`http://localhost:8080/image/${guideObj.avatar}`} /><div className="booking-card-details"><h5>{lib.getEasyDate(date)}:</h5><h4><span className="subtle-text">with</span> {guideObj.firstName + " " + guideObj.lastName}</h4> <h5><span className="subtle-text">at</span> {resortObj.name}</h5></div></div>
+                return <div className="booking-card"><img style={{ height: "10rem" }} src={`http://localhost:8080/image/${guideObj.avatar}`} /><div className="booking-card-details"><h5>{lib.getEasyDate(date)}:</h5><h4><span className="subtle-text">with</span> {guideObj.firstName + " " + guideObj.lastName}</h4> <h5><span className="subtle-text">at</span> {resortObj.name}</h5></div></div>
             }
 
         }
-        
+
         // const guideObj = lib.getObjectData(bookingObj, props.guides)
     })
 

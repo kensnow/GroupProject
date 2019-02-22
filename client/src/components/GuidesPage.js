@@ -31,9 +31,14 @@ function GuidesPage(props) {
 
 
 
+
+                </div>
             </div>
 
-        </div>
+
+
+
+
 
     )
 }

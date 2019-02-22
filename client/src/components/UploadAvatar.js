@@ -28,8 +28,8 @@ const App = (props) => {
     }
     return (
         <div>
-            <input type="file" name="avatar" id="avatar" style={{ display: "none" }} onChange={(e) => setImage(e)} />
-            <label className="Change-Image-Button" htmlFor="avatar">Change Image</label>
+            <input type="file" name="avatar" id="avatar" style={{ display: "none" }}  onChange={(e) => setImage(e)} />
+            <label className="change-Image-Button" htmlFor="avatar">Upload</label>
         </div>
     )
 }

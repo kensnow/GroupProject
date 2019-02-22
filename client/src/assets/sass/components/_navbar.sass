@@ -5,6 +5,8 @@
     height: 0rem
     margin: 0 auto
     transform: translate(0,4rem)
+    backface-visibility: hidden
+    animation: moveInBottom 1s ease-out 1s backwards
   
     .logo-box
         position: absolute
@@ -25,11 +27,13 @@
             
     ul
         width: 80%
+        margin: auto
         @include clearingFunction 
         @include tabletSize
-            width: 68%
+            width: 80%
         @include phoneSize
-            width: 60%
+            width: 80%
+            
         
     li
         float: right
