@@ -4,7 +4,13 @@ import ResortCard from './ResortCard'
 
 function ResortsPage(props) {
 
-    const resortCollection = props.resorts.map((resort, i) => { return <ResortCard key={i} {...resort} bookService={props.bookService} /> })
+    if (!props.resorts[0]) {
+        (async () => {
+            await props.getResorts()
+        })()
+    }
+
+    const resortCollection = props.resorts.map((resort, i) => { return <ResortCard key={i} {...resort} bookService={props.bookService}/>})
 
     return (
 

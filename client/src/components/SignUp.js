@@ -39,7 +39,7 @@ const SignUp = (props) => {
         {
             ///This will be a toggle value in state
             name: "userType",
-            value: "guide"
+            value: "customer"
         }
     ]
 
@@ -49,8 +49,10 @@ const SignUp = (props) => {
 
     return (
         <div className="signup-wrapper">
-            <FormHandler inputs={textInputs.reduce((sum, x) => { sum[x.name] = ""; return sum }, {})} submit={(inputs) => props.signUp(inputs)}>
-
+            <FormHandler inputs={textInputs.reduce((sum, x) => {
+                !x.type ? sum[x.name] = x.value : sum[x.name] = ""; return sum
+            }, {})
+            } submit={(inputs) => props.signUp(inputs)}>
                 {
                     ({ inputs, handleChange, handleSubmit }) => {
 

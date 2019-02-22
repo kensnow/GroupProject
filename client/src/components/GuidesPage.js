@@ -4,23 +4,31 @@ import GuideCard from './GuideCard'
 
 function GuidesPage(props) {
 
+    if (!props.guides[0]) {
+        (async () => {
+            await props.getGuides()
+        })()
+    }
+
     const guideList = props.guides.map((guide, i) => <GuideCard key={i} {...guide} guideNum={i} bookService={props.bookService} />)
     //pass down guide object array to guide cards, render new guide card for each guide in database
     return (
 
+        <div>
+            <div className="page-img-guide">
+                <div className="text-box-guide">
+                    <h1 className="heading-primary-guide">
+                        <span className="heading-primary-main-guide">Ski like a local.</span> <br />
+                        <span className="heading-primary-sub-guide">with our guides</span>
+                    </h1>
 
-        <div className="page-img-guide">
-            <div className="text-box-guide">
-                <h1 className="heading-primary-guide">
-                    <span className="heading-primary-main-guide">Ski like a local.</span> <br />
-                    <span className="heading-primary-sub-guide">with our guides</span>
-                </h1>
+                </div>
+                <div className="row">
+                    <div className="cards-wrapper">
+                        {guideList}
+                    </div>
+                </div>
 
-            </div>
-            <div className="row">
-                <div className="cards-wrapper">
-
-                    {guideList}
 
 
 
@@ -29,7 +37,6 @@ function GuidesPage(props) {
 
 
 
-        </div>
 
 
 
