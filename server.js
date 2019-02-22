@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 const morgan = require('morgan')
 const expressJWT = require("express-jwt")
-const path = require('path');
+const path = require('path')
 
 
 const app = express()
