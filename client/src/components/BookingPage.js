@@ -10,6 +10,7 @@ import FormHandler from '../FormHandler'
 function BookingPage(props) {
     const { user, guides, resorts, booking } = props
 
+    console.log(props)
     //build guide & resort cardlett
     const guideDat = lib.getObjectData(booking.guide, guides)
     const resortDat = lib.getObjectData(booking.resort, resorts)
@@ -29,11 +30,12 @@ function BookingPage(props) {
                 <div className="text-box-booking"> {/* add text */}
                     <h1 className="heading-primary-booking">
                         <span className="heading-primary-main-booking">Ski like a local</span> <br />
-                        <span className="heading-primary-sub-booking">book meow!</span>
+                        <span className="heading-primary-sub-booking">book now!</span>
                     </h1>
-                    <h1>Book Now!</h1>
                     <div>
                         {resortDat ? <ResortCardlette {...resortDat} /> : <Link to="/resorts">Select a Resort!</Link>}
+                        <br></br>
+                        {guideDat ? <GuideCardlette {...guideDat}/> : <Link to="/guides">Select your Guide!</Link>} 
                         <div>
 
                             {resortDat && guideDat ?
@@ -45,6 +47,7 @@ function BookingPage(props) {
                                                     <input onChange={handleChange} type="date" name="date" />
                                                     <input onChange={handleChange} type="number" name="groupSize" placeholder="Group Size" />
                                                     <button>Book Now</button>
+                                                    
                                                 </form>
                                             )
 
@@ -53,7 +56,7 @@ function BookingPage(props) {
                                     }
 
                                 </FormHandler> :
-                                "Select your guide and resort before booking"}
+                                props.notification === "" ? <h5>Select your guide and resort before booking!</h5> : <h4><Link to='/myprofile'>{props.notification}</Link></h4>}
                         </div>
                     </div>
 
