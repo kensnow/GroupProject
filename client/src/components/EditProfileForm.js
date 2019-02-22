@@ -9,7 +9,7 @@ const EditProfileForm = (props) => {
         {
             name: "nickName",
             type: "text",
-            guideOnly: true,
+            guideonly: "true",
             placeholder: "Display Name",
             className: "textBox",
         },
@@ -40,52 +40,57 @@ const EditProfileForm = (props) => {
         {
             name: "aboutMe",
             type: "text",
-            guideOnly: true,
+            guideonly: "true",
             placeholder: "Bio",
             className: "largeTextBox",
         },
         {
             name: "dailyRate",
             type: "number",
-            guideOnly: true,
+            guideonly: "true",
             placeholder: "Daily Rate",
             className: "textBox",
+        },
+        {
+            name: "abilityLevel",
+            value: []
         }
     ]
-
-
-
-
 
     return (
         <div className="signupWrapper">
             <FormHandler inputs={textInputs.reduce((sum, x) => {
-                !x.type ? sum[x.name] = x.value : sum[x.name] = ""; return sum
+                !x.type ? sum[x.name] = x.value : sum[x.name] = props.user[x.name] || ""; return sum
             }, {})
             } submit={(inputs) => props.signUp(inputs)}>
-
                 {
-                    ({ inputs, handleChange, handleSubmit }) => {
+                    ({ inputs, handleChange, handleSubmit, handleAbility }) => {
 
                         const inputBoxes = textInputs.map((x, i) => {
-                            return !x.type ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
-                        }
-                        )
+                            if (props.user.userType === "guide") {
+                                return x.type ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
+                            } else {
+                                return (x.type && !x.guideonly) ? <input key={i} onChange={handleChange} value={inputs[x.name]} {...x} /> : null
+                            }
+                        })
+                        
                         return (
-                            <div className="formWrapper">
+                            <div style={{border: "1px solid black"}} className="formWrapper">
                                 <div className="userTypeWrapper">
-                                    <button className="guide-button" name="userType" onClick={handleChange} value="guide">I need a guide</button>
-                                    <button className="customer-button" name="userType" onClick={handleChange} value="customer" id="customer">I am a guide</button>
 
                                 </div>
                                 <form onSubmit={handleSubmit}>
                                     {inputBoxes}
                                     <button>Submit</button>
+                                    <div>
+                                        <button value={1} onClick={handleAbility}>Beginner</button>
+                                        <button value={2} onClick={handleAbility}>Intermediate</button>
+                                        <button value={3} onClick={handleAbility}>Advanced</button>
+                                        <button value={4} onClick={handleAbility}>Expert</button>
+                                    </div>
                                 </form>
                             </div>
                         )
-
-
                     }
                 }
             </FormHandler>

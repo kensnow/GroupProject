@@ -1,6 +1,7 @@
 import React from 'react'
 import { withDataHandler } from "../DataHandler"
 import UploadAvatar from "./UploadAvatar"
+import EditProfileForm from "./EditProfileForm"
 function ProfilePage(props) {
     return (
         <div>
@@ -43,6 +44,7 @@ function ProfilePage(props) {
                 </div>
 
             </div>
+            <EditProfileForm/>
         </div>
     )
 }

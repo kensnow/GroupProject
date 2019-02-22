@@ -29,8 +29,6 @@ authRouter.post("/signup", (req, res, next) => {
                     const newUser = req.body.userType === "guide" ? new Guide(req.body) : new Customer(req.body)
 
                     newUser.save((err, user) => {
-                        console.log(user)
-                        console.log(newUser)
                         if (err) return res.status(500).send({ success: false, err })
 
                         //Login and send token

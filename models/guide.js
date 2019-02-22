@@ -35,7 +35,7 @@ const guideSchema = new mongoose.Schema({
         type: objectId,
         ref: 'Bookings'
     }],
-    abilityRange: [],
+    abilityRange: [Number],
     resorts: [{
         type: objectId,
         ref: 'Resort'
@@ -64,8 +64,6 @@ bcrypt.hash(user.password, 10, (err, hash) => {
 guideSchema.methods.withoutSensitiveInfo = function () {
     const user = this.toObject()
     delete user.password
-    delete user.email
-    delete user.lastname
     return user
 }
 
