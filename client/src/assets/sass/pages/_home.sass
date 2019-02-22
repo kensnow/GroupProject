@@ -1,6 +1,8 @@
 .about
     background-color: $color-grey-light-1
     padding: 25rem 0
+    @include tabletSize
+        height: 100vh
     .box
         position: absolute
         background-color: rgba($color-primary-dark, .2)
@@ -13,10 +15,12 @@
         left: 28%
         border-radius: 1rem
         @include phoneSize
+            top: 145%
             font-size: 1rem
             height: 37vh
             font-weight: 600
         @include tabletSize
+            top: 145%
             font-size: 1.6rem
-            height: 35vh
+            height: 28vh
             font-weight: 500

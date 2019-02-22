@@ -14,7 +14,7 @@ function LandingPage(props) {
                         <span className="heading-primary-sub">Ski like a local.</span>
                     </h1>
                     {props.showLoginForm ? <LoginForm /> : <SignUp />}
-                    <button onClick={props.toggleLoginForm} className="resort-btn"> {props.showLoginForm ? "Sign Up" : "Login"} </button>
+                    <button onClick={props.toggleLoginForm} className="signUpToggler-btn"> {props.showLoginForm ? "Sign Up" : "Already a User"} </button>
                 </div>
             </div>
 
